@@ -2,7 +2,7 @@
     <defs>
         <style>
             .vi-primary {
-                fill: #EDECED;
+                fill: #FFFFFF;
             }
 
             .vi-primary, .vi-accent {

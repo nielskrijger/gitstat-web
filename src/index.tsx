@@ -1,7 +1,7 @@
 import { createBrowserHistory } from 'history';
 import React, { FC, ReactElement, Suspense } from 'react';
 import * as ReactDOM from 'react-dom';
-import { Router } from 'react-router';
+import { Redirect, Router } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import AllProviders from './context/AllProviders';
 import MainLayout from './layouts/MainLayout';
@@ -26,7 +26,8 @@ const App: FC = (): ReactElement => (
       <Suspense fallback={<LoadingScreen />}>
         <Switch>
           <Route exact path="/" render={(): ReactElement => <HomeScreen />} />
-          <Route path="/*">
+          <Route exact path="/404" render={(): ReactElement => <NotFoundScreen />} />
+          <Route>
             <MainLayout>
               <Switch>
                 <Route exact path="/data" render={(): ReactElement => <DataScreen />} />
@@ -34,7 +35,7 @@ const App: FC = (): ReactElement => (
                 <Route exact path="/graphs" render={(): ReactElement => <GraphsScreen />} />
                 <Route exact path="/commits" render={(): ReactElement => <CommitsScreen />} />
                 <Route exact path="/about" render={(): ReactElement => <AboutScreen />} />
-                <Route render={(): ReactElement => <NotFoundScreen />} />
+                <Route render={(): ReactElement => <Redirect to="/404" />} />
               </Switch>
             </MainLayout>
           </Route>

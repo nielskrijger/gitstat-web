@@ -5,7 +5,8 @@ import { Config } from '../reducers/configReducer';
 import { Commit, Project, Signature } from '../types/gitStatData';
 
 /**
- * Returns a list of all author names in the data set. Any aliases are removed.
+ * Memoized function returning a list of all author names in the data set.
+ * Any aliases are resolved.
  */
 export function useAuthorNames(): string[] {
   const { config } = useConfig();
@@ -28,8 +29,7 @@ function caseInsensitiveSort(a: string, b: string): number {
 }
 
 /**
- * Returns the real author name if the Signature's name is an alias.
- * Otherwise returns the real name.
+ * Resolves any author aliases.
  */
 export function findRealName(sig: Signature, config: Config): Signature {
   const aliases = config.authorAliases.find(elm => elm.aliases.includes(sig.name));

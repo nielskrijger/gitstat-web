@@ -5,7 +5,7 @@
     "dev": "parcel src/index.html --no-cache",
     "build": "parcel build src/index.html --public-url / --out-dir public",
     "serve": "serve --single ./dist/index.html",
-    "lint": "tsc --noEmit && eslint --ext .ts,.tsx src/"
+    "lint": "eslint --ext .ts,.tsx src/ && tsc --noEmit"
   },
   "dependencies": {
     "@types/chart.js": "^2.9.10",
@@ -50,7 +50,6 @@
     "autoprefixer": "^9.7.4",
     "babel-preset-react-app": "^9.1.0",
     "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",

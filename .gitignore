@@ -1,0 +1,10 @@
+dist
+build
+gitlab-local.sh
+node_modules
+.cache
+*.log
+.DS_Store
+.vscode
+public
+samples

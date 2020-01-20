@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true, // Allow "import React from 'react';"
+    "noUnusedLocals": true,
+    "types": [
+      "react" // this excludes @types/react-native which was throwing errors
+    ],
+    "jsx": "react",
+    "rootDir": "./src",
+    "experimentalDecorators": true,
+    "lib": [
+      "dom",
+      "es2017"
+    ]
+  }
+}

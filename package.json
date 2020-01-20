@@ -3,7 +3,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel src/index.html --no-cache",
-    "build": "tsc --noEmit && parcel build src/index.html --public-url / --out-dir public",
+    "build": "parcel build src/index.html --public-url / --out-dir public",
     "serve": "serve --single ./dist/index.html",
     "lint": "tsc --noEmit && eslint --ext .ts,.tsx src/"
   },

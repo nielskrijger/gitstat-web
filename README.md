@@ -1,10 +1,10 @@
 # gitstat-web
 
-This repository hosts the web source-code of [gitstat.com](https://gitstat.com).
+This repository contains the source code of the [gitstat.com](https://gitstat.com) website.
 
-If you're looking for the tool to generate a JSON logfile go [here](https://github.com/nielskrijger/gitstat).
+If you're looking for how to generate the JSON git logfile go [here](https://github.com/nielskrijger/gitstat) instead.
 
-## Building
+## Development
 
 Simply run:
 
@@ -13,7 +13,7 @@ $ npm install
 $ npm run dev
 ```
 
-The website will be available at http://localhost:1234.
+The website will be available at http://localhost:1234
 
 ## Todo
 
@@ -51,6 +51,6 @@ __Where are the tests?__
 
 Usually I focus heavily on automated tests but most of my hobby projects never see the light of day. In this case I focused on pushing the project above all else.
 
-__Why do so much computation in the front-end?__
+__Why is there so much computation in the front-end?__
 
-The gitstat CLI tool is intended to gather the minimal amount of data, any data that can be derived is excluded from its JSON output. As a result the front-end computes derived data within `Extended<Type>` objects.
+There is no backend API, only a CLI tool to generate the git logfile. The gitstat CLI tool is intended to gather the minimum amount of data; any data that can be derived is excluded from its JSON output. As a result the front-end computes derived data within `Extended<Type>` objects.

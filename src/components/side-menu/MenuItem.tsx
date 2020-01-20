@@ -18,7 +18,7 @@ const MenuItemLink = styled.div`
   font-weight: 400;
   flex: 1;
   flex-direction: row;
-  padding: 0.4rem 1.6rem;
+  padding: 0.3rem 1.4rem;
 
   &:hover {
     color: ${colors.link};
@@ -29,7 +29,7 @@ const MenuIcon = styled.div`
   width: 1.1rem;
   height: 1.1rem;
   display: inline-block;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
   vertical-align: -0.5rem;
 `;
 

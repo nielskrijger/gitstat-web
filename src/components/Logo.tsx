@@ -1,5 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import styled from 'styled-components';
+import LogoSVG from '../../assets/logo.svg';
 import useRouter from '../hooks/useRouter';
 import { colors } from '../styles/colors';
 
@@ -29,7 +30,7 @@ const Logo: FC = (): ReactElement => {
 
   return (
     <Container onClick={gotoHome}>
-      <i data-vi="graph-poly" data-vi-primary={colors.text} />
+      <LogoSVG />
       <StyledLogo>gitstat</StyledLogo>
     </Container>
   );

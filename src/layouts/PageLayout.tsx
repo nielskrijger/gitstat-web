@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 
 const MessageContainer = styled.div`
-  margin: 3.7rem;
+  margin: 1.85rem 3.2rem;
 `;
 
 const PageLayout: FC = ({ children }): ReactElement => (

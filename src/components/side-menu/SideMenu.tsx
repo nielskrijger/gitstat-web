@@ -6,7 +6,7 @@ import CommitIcon from '../../../assets/icons/commit.svg';
 import ConfigIcon from '../../../assets/icons/config.svg';
 import UploadIcon from '../../../assets/icons/upload.svg';
 import { colors } from '../../styles/colors';
-import Logo from './Logo';
+import Logo from '../Logo';
 import MenuItem from './MenuItem';
 
 const Container = styled.div`
@@ -16,18 +16,18 @@ const Container = styled.div`
   padding: 0 1rem;
 `;
 
-const MenuBlock = styled.nav``;
+const MenuContainer = styled.nav``;
 
-const LogoBlock = styled.div`
-  margin: 2rem 1rem;
+const LogoContainer = styled.div`
+  margin: 1.3rem 0.3rem;
 `;
 
 const SideMenu: FC = (): ReactElement => (
   <Container>
-    <LogoBlock>
+    <LogoContainer>
       <Logo />
-    </LogoBlock>
-    <MenuBlock>
+    </LogoContainer>
+    <MenuContainer>
       <MenuItem to="/data" icon={<UploadIcon />}>
         Change data
       </MenuItem>
@@ -47,7 +47,7 @@ const SideMenu: FC = (): ReactElement => (
       <MenuItem to="/about" icon={<AboutIcon />}>
         About
       </MenuItem>
-    </MenuBlock>
+    </MenuContainer>
   </Container>
 );
 

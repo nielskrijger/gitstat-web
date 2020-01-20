@@ -25,11 +25,10 @@ const AboutScreen: FC = (): ReactElement => (
         </a>
       </li>
       <li>
-        Logo graph-poly icon from
+        Logo graph-poly icon from{' '}
         <a target="_blank" rel="noopener noreferrer" href="https://webkul.github.io/vivid/">
           vivid icons
         </a>
-        .
       </li>
       <li>
         From{' '}

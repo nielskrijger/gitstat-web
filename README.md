@@ -2,7 +2,7 @@
 
 This repository contains the source code of the [gitstat.com](https://gitstat.com) website.
 
-If you're looking for how to generate the JSON git logfile go [here](https://github.com/nielskrijger/gitstat) instead.
+If you're looking to generate the JSON git logfile [go here](https://github.com/nielskrijger/gitstat) instead.
 
 ## Development
 
@@ -17,11 +17,7 @@ The website will be available at http://localhost:1234
 
 ## Todo
 
-- [x] support multiple projects at the same time
-- [ ] fix typescript errors
-- [ ] add change stats for file renames
-- [ ] enable changing configuration as plain JSON
-- [ ] add jest
+See the Kanban board [here](https://github.com/nielskrijger/gitstat-web/projects/1).
 
 ## FAQ
 

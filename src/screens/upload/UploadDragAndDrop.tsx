@@ -1,10 +1,12 @@
 import { lighten } from 'polished';
-import React, { FC, ReactElement, useCallback, useContext } from 'react';
+import React, { FC, ReactElement, useCallback, useContext, useState } from 'react';
 import { DropzoneRootProps, useDropzone } from 'react-dropzone';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import Loader from '../../components/Loader';
 import { GitDataStore } from '../../context/GitDataProvider';
 import { colors } from '../../styles/colors';
+import { borderRadius } from '../../styles/styles';
 import { GitStatData } from '../../types/gitStatData';
 
 const getColor = (props: DropzoneRootProps): string => {
@@ -31,34 +33,41 @@ const Container = styled.div<DropzoneRootProps>`
   border-width: 1px;
   border-style: dashed;
   border-color: ${(props: DropzoneRootProps): string => getColor(props)};
-  background-color: ${colors.black};
+  border-radius: ${borderRadius};
+  background-color: ${colors.inputBackground};
   color: ${colors.textSecondary};
   outline: none;
-  transition: border 0.24s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     background-color: ${lighten(0.01, colors.background)};
-    border-color: ${(props: DropzoneRootProps): string => lighten(0.05, getColor(props))};
-    color: ${lighten(0.1, colors.textSecondary)};
+    border-color: ${colors.inputBorderHover};
+    color: ${colors.text};
   }
 `;
 
 const UploadDragAndDrop: FC = (): ReactElement => {
+  const [loading, setLoading] = useState(false);
   const { dispatch } = useContext(GitDataStore);
   const history = useHistory();
 
   const onDrop = useCallback(
     (acceptedFiles): void => {
-      const reader = new FileReader();
-      reader.onload = (): void => {
-        const text = String(reader.result);
-        const data = JSON.parse(text) as GitStatData;
-        dispatch({ type: 'LOAD_DATA', data });
-        history.push('/graphs');
-      };
-      reader.readAsText(acceptedFiles[0]);
+      setLoading(true);
+
+      // Process the files within a timeout to allow rerendering to take place
+      setTimeout(() => {
+        const reader = new FileReader();
+        reader.onload = (): void => {
+          const text = String(reader.result);
+          const data = JSON.parse(text) as GitStatData;
+          dispatch({ type: 'LOAD_DATA', data });
+          history.push('/graphs');
+        };
+        reader.readAsText(acceptedFiles[0]);
+      }, 200);
     },
-    [dispatch, history],
+    [dispatch, history, setLoading],
   );
 
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
@@ -68,8 +77,13 @@ const UploadDragAndDrop: FC = (): ReactElement => {
 
   return (
     <Container {...getRootProps({ isDragActive, isDragAccept, isDragReject })}>
-      <input {...getInputProps()} />
-      <p>Drag &apos;n&apos; drop your JSON file here, or click to select one</p>
+      {loading && <Loader />}
+      {!loading && (
+        <>
+          <input {...getInputProps()} />
+          <p>Drag &apos;n&apos; drop your JSON file here, or click to select one</p>
+        </>
+      )}
     </Container>
   );
 };

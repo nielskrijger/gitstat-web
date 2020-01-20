@@ -1,5 +1,5 @@
-import styled, { keyframes } from 'styled-components';
 import React, { FC, ReactElement } from 'react';
+import styled, { keyframes } from 'styled-components';
 import { colors } from '../styles/colors';
 
 const Container = styled.div`
@@ -11,17 +11,17 @@ const Container = styled.div`
 const Ellipsis = styled.div`
   display: inline-block;
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 40px;
+  top: 8px;
+  height: 20px;
 `;
 
 const Dot = styled.div`
   position: absolute;
-  top: 27px;
-  width: 11px;
-  height: 11px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: ${colors.tertiary};
+  background: ${colors.text};
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 `;
 
@@ -39,7 +39,7 @@ const ellipsis2 = keyframes`
     transform: translate(0, 0);
   }
   100% {
-    transform: translate(19px, 0);
+    transform: translate(13px, 0);
   }
 `;
 
@@ -63,12 +63,12 @@ const Dot2 = styled(Dot)`
 `;
 
 const Dot3 = styled(Dot)`
-  left: 26px;
+  left: 20px;
   animation: ${ellipsis2} 0.6s infinite;
 `;
 
 const Dot4 = styled(Dot)`
-  left: 45px;
+  left: 33px;
   animation: ${ellipsis3} 0.6s infinite;
 `;
 

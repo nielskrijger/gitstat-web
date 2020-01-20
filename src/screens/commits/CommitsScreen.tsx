@@ -1,5 +1,6 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import H1 from '../../components/H1';
 import Pagination from '../../components/table/Pagination';
 import { useStoredState } from '../../hooks/useStateWithSessionStorage';
 import { OrderByType, useSortedCommits } from '../../selectors/commits';
@@ -36,6 +37,8 @@ const CommitsScreen: FC = (): ReactElement => {
 
   return (
     <>
+      <H1>Commits</H1>
+
       <TableControlContainer>
         <SelectOrderBy onChange={setOrderBy} value={orderBy} />
         <SelectItemCount onChange={handleSetItemsPerPage} value={itemsPerPage} />

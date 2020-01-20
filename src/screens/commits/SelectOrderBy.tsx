@@ -6,10 +6,10 @@ import { OrderByType } from '../../selectors/commits';
 import { SelectOptionType } from '../../types/select';
 
 const options = [
-  { label: 'Commit date', value: OrderByType.TIME },
-  { label: 'Additions + deletions', value: OrderByType.MUTATIONS },
-  { label: 'Additions', value: OrderByType.ADDITIONS },
-  { label: 'Deletions', value: OrderByType.DELETIONS },
+  { label: 'Commit date ↓', value: OrderByType.TIME },
+  { label: 'Additions + deletions ↓', value: OrderByType.MUTATIONS },
+  { label: 'Additions ↓', value: OrderByType.ADDITIONS },
+  { label: 'Deletions ↓', value: OrderByType.DELETIONS },
 ];
 
 interface SelectSortByProps {
@@ -18,7 +18,7 @@ interface SelectSortByProps {
 }
 
 const SelectContainer = styled.div`
-  width: 210px;
+  width: 220px;
   margin-left: 0.3rem;
 `;
 

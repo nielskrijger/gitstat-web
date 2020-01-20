@@ -41,7 +41,7 @@ const SideMenu: FC = (): ReactElement => (
       </MenuItem>
 
       <MenuItem to="/commits" icon={<CommitIcon />}>
-        Commits table
+        Commits
       </MenuItem>
 
       <MenuItem to="/about" icon={<AboutIcon />}>

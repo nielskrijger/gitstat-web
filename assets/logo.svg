@@ -10,7 +10,7 @@
             }
 
             .vi-accent {
-                fill: #0C0058;
+                fill: #0F0F0F;
             }
         </style>
     </defs>

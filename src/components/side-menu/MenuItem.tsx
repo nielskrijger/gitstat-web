@@ -1,17 +1,16 @@
 import * as H from 'history';
 import React, { FC, ReactElement } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
-import TransparentButton from '../buttons/TransparentButton';
 
 interface SideMenuProps {
-  readonly to?: H.LocationDescriptor;
-  readonly onClick?: () => void;
+  readonly to: H.LocationDescriptor;
   readonly icon: ReactElement;
 }
 
-const MenuItemLink = styled.div`
+const MenuItemLink = styled(NavLink)`
+  display: block;
   color: ${colors.text};
   text-decoration: none;
   font-size: 1rem;
@@ -33,25 +32,17 @@ const MenuIcon = styled.div`
   vertical-align: -0.5rem;
 `;
 
-const MenuItem: FC<SideMenuProps> = ({ to, onClick, icon, children }): ReactElement => {
-  if (to) {
-    return (
-      <Link to={to}>
-        <MenuItemLink>
-          <MenuIcon>{icon}</MenuIcon>
-          {children}
-        </MenuItemLink>
-      </Link>
-    );
-  }
-  return (
-    <TransparentButton type="button" onClick={onClick}>
-      <MenuItemLink>
-        <MenuIcon>{icon}</MenuIcon>
-        {children}
-      </MenuItemLink>
-    </TransparentButton>
-  );
-};
+const MenuItem: FC<SideMenuProps> = ({ to, icon, children }): ReactElement => (
+  <MenuItemLink
+    to={to}
+    activeStyle={{
+      fontWeight: 'bold',
+      color: colors.link,
+    }}
+  >
+    <MenuIcon>{icon}</MenuIcon>
+    {children}
+  </MenuItemLink>
+);
 
 export default MenuItem;

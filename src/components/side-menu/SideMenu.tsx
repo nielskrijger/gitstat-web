@@ -14,6 +14,7 @@ const Container = styled.div`
   flex-direction: column;
   border-right: 1px solid ${colors.border};
   padding: 0 1rem;
+  width: 14rem;
 `;
 
 const MenuContainer = styled.nav``;

@@ -4,10 +4,17 @@ import H2 from '../../components/H2';
 
 const AboutScreen: FC = (): ReactElement => (
   <>
-    <H1>GitStat</H1>
+    <H1>About GitStat</H1>
     <p>
       This is a hobby project. Feel free to share ideas or report bugs on{' '}
-      <a href="https://github.com/nielskrijger/gitstat-web">github</a>.
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/nielskrijger/gitstat-web"
+      >
+        github
+      </a>
+      .
     </p>
 
     <H2>Credits</H2>

@@ -1,37 +1,51 @@
 import React, { FC, ReactElement } from 'react';
 import styled from 'styled-components';
-import { useMergeConfig } from '../../actions/config';
+import HoverButton from '../../components/buttons/HoverButton';
+import ClearableInput from '../../components/form/ClearableInput';
 import StyledInput from '../../components/form/StyledInput';
-import { useConfig } from '../../context/ConfigProvider';
+import PlusIcon from '../../components/icons/PlusIcon';
+import {
+  addConfigIndex,
+  removeConfigIndex,
+  updateConfigIndex,
+} from '../../stores/config/configActions';
+import { useConfig } from '../../stores/config/ConfigProvider';
 
 const FormRow = styled.div`
-  display: flex;
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
 `;
 
 const IncludeFilePatterns: FC = (): ReactElement => {
-  const { config } = useConfig();
-  const mergeConfig = useMergeConfig();
+  const { config, dispatch } = useConfig();
 
   return (
-    <div style={{ padding: '' }}>
+    <>
       {config.includeFileFilters.map((value, index) => (
         <FormRow key={index}>
-          <StyledInput
-            value={value}
-            onChange={value => {
-              console.log('value', value);
-              // mergeConfig({
-              //   includeFileFilters: authors.filter(
-              //     name =>
-              //       !Array.isArray(selectedAuthors) || !selectedAuthors.some(e => e.value === name),
-              //   ),
-              // });
-            }}
-          />
+          {config.includeFileFilters.length === 1 ? (
+            <StyledInput
+              value={value}
+              onChange={(ev): void => {
+                dispatch(updateConfigIndex('includeFileFilters', index, ev.target.value));
+              }}
+            />
+          ) : (
+            <ClearableInput
+              value={value}
+              onChange={(ev): void => {
+                dispatch(updateConfigIndex('includeFileFilters', index, ev.target.value));
+              }}
+              onClear={(): void => {
+                dispatch(removeConfigIndex('includeFileFilters', index));
+              }}
+            />
+          )}
         </FormRow>
       ))}
-    </div>
+      <HoverButton onClick={(): void => dispatch(addConfigIndex('includeFileFilters', '.*'))}>
+        <PlusIcon /> Add another regex pattern
+      </HoverButton>
+    </>
   );
 };
 

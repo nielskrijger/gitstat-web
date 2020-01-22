@@ -1,6 +1,7 @@
 import React, { createContext, Dispatch, FC, ReactElement, useContext } from 'react';
-import { usePersistedReducer } from '../hooks/usePersistedReducer';
-import reducer, { Actions, Config, initialState } from '../reducers/configReducer';
+import { usePersistedReducer } from '../../hooks/usePersistedReducer';
+import reducer, { Actions, initialState } from './configReducer';
+import { Config } from './configTypes';
 
 interface ContextProps {
   readonly state: Config;

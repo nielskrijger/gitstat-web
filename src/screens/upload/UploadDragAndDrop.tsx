@@ -4,7 +4,8 @@ import { DropzoneRootProps, useDropzone } from 'react-dropzone';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Loader from '../../components/Loader';
-import { GitDataStore } from '../../context/GitDataProvider';
+import { loadData } from '../../stores/data/dataActions';
+import { GitDataStore } from '../../stores/data/GitDataProvider';
 import { colors } from '../../styles/colors';
 import { borderRadius } from '../../styles/styles';
 import { GitStatData } from '../../types/gitStatData';
@@ -61,7 +62,7 @@ const UploadDragAndDrop: FC = (): ReactElement => {
         reader.onload = (): void => {
           const text = String(reader.result);
           const data = JSON.parse(text) as GitStatData;
-          dispatch({ type: 'LOAD_DATA', data });
+          dispatch(loadData(data));
           history.push('/graphs');
         };
         reader.readAsText(acceptedFiles[0]);
@@ -81,7 +82,9 @@ const UploadDragAndDrop: FC = (): ReactElement => {
       {!loading && (
         <>
           <input {...getInputProps()} />
-          <p>Drag &apos;n&apos; drop your JSON file here, or click to select one</p>
+          <p style={{ textAlign: 'center' }}>
+            Drag &apos;n&apos; drop your JSON file here, or click to select one
+          </p>
         </>
       )}
     </Container>

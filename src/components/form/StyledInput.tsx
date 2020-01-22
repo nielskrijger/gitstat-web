@@ -7,12 +7,6 @@ interface InputProps {
   readonly isValid?: boolean;
 }
 
-interface StyleProps {
-  readonly icon: FlattenSimpleInterpolation | undefined;
-  readonly borderColor: string;
-  readonly shadowColor: string;
-}
-
 const validIcon: FlattenSimpleInterpolation = css`
   background-repeat: no-repeat;
   background-size: 0.75rem;
@@ -30,20 +24,16 @@ function determineBorderColor(hasError?: boolean, isValid?: boolean): string {
   return colors.inputBorder;
 }
 
-const StyledInput = styled.input.attrs<InputProps>(({ hasError, isValid }) => ({
-  icon: isValid ? validIcon : undefined,
-  borderColor: determineBorderColor(hasError, isValid),
-  shadowColor: hasError ? colors.error : colors.secondary,
-}))<StyleProps>`
+const StyledInput = styled.input`
   display: block;
   width: 100%;
   min-height: 38px;
   padding: 0 0.75rem;
-  border: 1px solid ${({ borderColor }): string => borderColor};
+  border: 1px solid
+    ${({ hasError, isValid }: InputProps): string => determineBorderColor(hasError, isValid)};
   border-radius: ${borderRadius};
   color: ${colors.text};
   background-color: ${colors.inputBackground};
-  transition: background-color 0.2s ease-in-out;
   box-sizing: border-box;
 
   ::placeholder {
@@ -57,15 +47,15 @@ const StyledInput = styled.input.attrs<InputProps>(({ hasError, isValid }) => ({
   }
 
   :focus {
-    box-shadow: 0 0 0 1px ${({ shadowColor }): string => shadowColor};
     outline: 0;
-    
+
     &:hover {
       border: 1px solid ${colors.secondary};
     }
   }
 
-  ${({ icon }): FlattenSimpleInterpolation | undefined => icon}
+  ${({ isValid }: InputProps): FlattenSimpleInterpolation | undefined =>
+    isValid ? validIcon : undefined}
 `;
 
 export default StyledInput;

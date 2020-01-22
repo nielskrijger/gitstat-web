@@ -1,4 +1,4 @@
-import { Config } from '../reducers/configReducer';
+import { Config } from '../stores/config/configTypes';
 import { CommitMutations, ExtendedCommitFile } from '../types/commits';
 import { Commit } from '../types/gitStatData';
 

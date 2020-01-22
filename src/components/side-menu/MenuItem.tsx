@@ -3,7 +3,7 @@ import React, { FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
-import TransparentButton from '../TransparentButton';
+import TransparentButton from '../buttons/TransparentButton';
 
 interface SideMenuProps {
   readonly to?: H.LocationDescriptor;

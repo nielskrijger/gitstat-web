@@ -4,13 +4,30 @@ import { colors } from '../../styles/colors';
 import { borderRadius } from '../../styles/styles';
 import { SelectOptionType } from '../../types/select';
 
+// The styling setup here follows the recommended approach from https://react-select.com/styles.
+// While using styled-components it should be possible to achieve the same result, this
+// wouldn't provide any added value.
+//
 // The pseudo-selectors (:hover, :first-child, etc) are not valid CSSProperties
 // but parsed by react-select. The typings for that library are incomplete.
 // To work around this we sometimes return any.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+const indicatorStyle = (provided: CSSProperties): any => ({
+  ...provided,
+  color: colors.text,
+  cursor: 'pointer',
+  transition: 'all 0.2s ease-in-out',
+  '&:hover': {
+    color: colors.textDisabled,
+  },
+});
+
 const customStyles = {
+  dropdownIndicator: indicatorStyle,
+  clearIndicator: indicatorStyle,
+  loadingIndicator: indicatorStyle,
   control: (provided: CSSProperties, state: Props): any => ({
     ...provided,
     backgroundColor: colors.inputBackground,
@@ -61,11 +78,6 @@ const customStyles = {
       borderBottomLeftRadius: borderRadius,
       borderBottomRightRadius: borderRadius,
     },
-  }),
-  dropdownIndicator: (provided: CSSProperties): CSSProperties => ({
-    ...provided,
-    color: colors.text,
-    cursor: 'pointer',
   }),
   multiValue: (provided: CSSProperties): CSSProperties => ({
     ...provided,

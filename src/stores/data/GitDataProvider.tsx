@@ -1,6 +1,6 @@
 import React, { createContext, Dispatch, FC, ReactElement, useContext, useReducer } from 'react';
-import reducer, { Actions, initialState } from '../reducers/dataReducer';
-import { GitStatData } from '../types/gitStatData';
+import { GitStatData } from '../../types/gitStatData';
+import reducer, { Actions, initialState } from './dataReducer';
 
 interface ContextProps {
   readonly state: GitStatData;

@@ -28,6 +28,10 @@ const SideMenu: FC = (): ReactElement => (
       <Logo />
     </LogoContainer>
     <MenuContainer>
+      <MenuItem to="/config" icon={<ConfigIcon />}>
+        Config
+      </MenuItem>
+
       <MenuItem to="/graphs" icon={<ChartIcon />}>
         Graphs
       </MenuItem>
@@ -38,10 +42,6 @@ const SideMenu: FC = (): ReactElement => (
 
       <MenuItem to="/data" icon={<UploadIcon />}>
         Change data
-      </MenuItem>
-
-      <MenuItem to="/config" icon={<ConfigIcon />}>
-        Config
       </MenuItem>
 
       <MenuItem to="/about" icon={<AboutIcon />}>

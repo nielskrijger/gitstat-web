@@ -52,7 +52,10 @@ const PieChart: FC<PieChartProps> = ({ slices, style }): ReactElement => {
             callbacks: {
               label: (tooltipItem: ChartTooltipItem, data: ChartData): string => {
                 const dataset = data.datasets![tooltipItem.datasetIndex!];
-                const meta = dataset._meta[Object.keys(dataset._meta)[0]]; // eslint-disable-line no-underscore-dangle
+
+                // _meta is not set in the typings
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const meta = (dataset as any)._meta[Object.keys((dataset as any)._meta)[0]];
                 const currentValue = dataset.data![tooltipItem.index!] as number;
                 const percentage = parseFloat(((currentValue / meta.total) * 100).toFixed(1));
                 return `${currentValue} (${percentage}%)`;

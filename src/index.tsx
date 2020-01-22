@@ -3,7 +3,6 @@ import React, { FC, ReactElement, Suspense } from 'react';
 import * as ReactDOM from 'react-dom';
 import { Redirect, Router } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
-import AllProviders from './context/AllProviders';
 import MainLayout from './layouts/MainLayout';
 import NotFoundScreen from './screens/404/NotFoundScreen';
 import AboutScreen from './screens/about/AboutScreen';
@@ -13,6 +12,7 @@ import GraphsScreen from './screens/graphs/GraphsScreen';
 import HomeScreen from './screens/home/HomeScreen';
 import LoadingScreen from './screens/loading/LoadingScreen';
 import DataScreen from './screens/upload/DataScreen';
+import Stores from './stores/Stores';
 import GlobalStyle from './styles/GlobalStyle';
 import './types/svg';
 
@@ -20,7 +20,7 @@ const history = createBrowserHistory();
 
 const App: FC = (): ReactElement => (
   <Router history={history}>
-    <AllProviders>
+    <Stores>
       <GlobalStyle />
 
       <Suspense fallback={<LoadingScreen />}>
@@ -41,7 +41,7 @@ const App: FC = (): ReactElement => (
           </Route>
         </Switch>
       </Suspense>
-    </AllProviders>
+    </Stores>
   </Router>
 );
 

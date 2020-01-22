@@ -1,9 +1,9 @@
 import { DateTime } from 'luxon';
 import { useMemo } from 'react';
-import { useConfig } from '../context/ConfigProvider';
-import { useGitData } from '../context/GitDataProvider';
 import { findRealName } from '../selectors/authors';
 import { extendedFiles, totalCommitMutations } from '../selectors/files';
+import { useConfig } from '../stores/config/ConfigProvider';
+import { useGitData } from '../stores/data/GitDataProvider';
 import { ExtendedCommit } from '../types/commits';
 import { Commit, Project } from '../types/gitStatData';
 

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { useConfig } from '../context/ConfigProvider';
-import { useGitData } from '../context/GitDataProvider';
-import { Config } from '../reducers/configReducer';
+import { useConfig } from '../stores/config/ConfigProvider';
+import { Config } from '../stores/config/configTypes';
+import { useGitData } from '../stores/data/GitDataProvider';
 import { Commit, Project, Signature } from '../types/gitStatData';
 
 /**
@@ -32,7 +32,7 @@ function caseInsensitiveSort(a: string, b: string): number {
  * Resolves any author aliases.
  */
 export function findRealName(sig: Signature, config: Config): Signature {
-  const aliases = config.authorAliases.find(elm => elm.aliases.includes(sig.name));
+  const aliases = config.authorAliases.find(({ aliases }) => aliases.includes(sig.name));
   const name = aliases ? aliases.realName : sig.name;
   return { ...sig, name };
 }

@@ -45,6 +45,7 @@ const AboutScreen: FC = (): ReactElement => (
           <li>person icon by Caitlin George</li>
           <li>collapse vertical icon by Omar Safaa</li>
           <li>line chart by Marie Van den Broeck</li>
+          <li>Plus by Aybiget</li>
         </ul>
       </li>
     </ul>

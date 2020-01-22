@@ -17,7 +17,16 @@ const Input: FC<InputProps & FieldRenderProps<HTMLInputElement, HTMLInputElement
   const isValid = showValid && meta.touched && meta.error === undefined && !meta.active;
   return (
     <>
-      <StyledInput type="text" {...input} {...props} hasError={hasError} isValid={isValid} />
+      <StyledInput
+        type="text"
+        {...input}
+        {...props}
+        value={
+          (input.value as unknown) as string /* TODO found no clean solution, probably issue with typings */
+        }
+        hasError={hasError}
+        isValid={isValid}
+      />
       <InputError hasError={hasError}>{meta.error}</InputError>
     </>
   );

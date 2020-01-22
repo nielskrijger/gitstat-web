@@ -78,7 +78,11 @@ const LineChart: FC<LineChartProps> = ({
           },
           elements: {
             line: {
-              fill: stacked ? '-1' : false, // by default, fill lines to the previous dataset
+              // By default, fill lines to the previous dataset using "-1". Sadly "-1"
+              // is missing from the chart.js typings which contains old <2.6.0
+              // typings for the fill prop. As a workaround cast to any.
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              fill: stacked ? ('-1' as any) : false,
             },
           },
           backgroundColor: colors.background,

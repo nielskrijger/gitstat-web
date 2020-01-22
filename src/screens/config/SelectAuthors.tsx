@@ -1,15 +1,14 @@
 import React, { FC, ReactElement, useMemo } from 'react';
 import { ValueType } from 'react-select';
-import { useMergeConfig } from '../../actions/config';
 import Select from '../../components/form/Select';
-import { useConfig } from '../../context/ConfigProvider';
 import { useAuthorNames } from '../../selectors/authors';
+import { updateConfig } from '../../stores/config/configActions';
+import { useConfig } from '../../stores/config/ConfigProvider';
 import { SelectOptionType } from '../../types/select';
 
 const SelectAuthors: FC = (): ReactElement => {
   const authors = useAuthorNames();
-  const { config } = useConfig();
-  const mergeConfig = useMergeConfig();
+  const { config, dispatch } = useConfig();
 
   const options = useMemo(() => authors.map(name => ({ label: name, value: name })), [authors]);
   const value = useMemo(() => options.filter(opt => config.excludeAuthors.includes(opt.value)), [
@@ -18,25 +17,23 @@ const SelectAuthors: FC = (): ReactElement => {
   ]);
 
   return (
-    <div>
-      {authors.length > 0 && (
-        <Select
-          name="exclude-authors"
-          isMulti
-          value={value}
-          options={options}
-          selectAll
-          onChange={(selectedAuthors: ValueType<SelectOptionType>): void => {
-            mergeConfig({
-              excludeAuthors: authors.filter(
-                name =>
-                  Array.isArray(selectedAuthors) && selectedAuthors.some(e => e.value === name),
-              ),
-            });
-          }}
-        />
-      )}
-    </div>
+    <Select
+      name="exclude-authors"
+      isMulti
+      value={value}
+      options={options}
+      selectAll
+      onChange={(selectedAuthors: ValueType<SelectOptionType>): void => {
+        dispatch(
+          updateConfig(
+            'excludeAuthors',
+            authors.filter(
+              name => Array.isArray(selectedAuthors) && selectedAuthors.some(e => e.value === name),
+            ),
+          ),
+        );
+      }}
+    />
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { CSSProperties, FC, ReactElement } from 'react';
 import styled from 'styled-components';
 import CollapseIcon from '../../../assets/icons/collapse.svg';
-import TransparentButton from '../../components/TransparentButton';
+import TransparentButton from '../../components/buttons/TransparentButton';
 import { colors } from '../../styles/colors';
 import { borderRadius } from '../../styles/styles';
 

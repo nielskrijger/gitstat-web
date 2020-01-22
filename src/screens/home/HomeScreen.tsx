@@ -6,13 +6,11 @@ import DataForm from '../upload/DataForm';
 const HomeScreen: FC = (): ReactElement => (
   <PageLayout>
     <H1>Git stats & graphs</H1>
-    <p>
-      Ever wanted to inspect the git activity of one or more projects? This should fit your bill.
-    </p>
+    <p>Visualize your project&apos;s git history.</p>
     <DataForm />
     <p>
-      This datafile is never stored! If you re-open this website you&apos;ll have to supply the same
-      file again.
+      This datafile is never stored! If you reopen or refresh this website you&apos;ll have to
+      supply the same file again.
     </p>
   </PageLayout>
 );

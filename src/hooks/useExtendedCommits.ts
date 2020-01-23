@@ -20,7 +20,7 @@ export function useExtendedCommits(): ExtendedCommit[] {
     if (data) {
       data.projects.forEach((project: Project): void => {
         project.commits.forEach((commit: Commit): void => {
-          if (config.excludeMerges && commit.isMerge) {
+          if (!config.includeMergeCommits && commit.isMerge) {
             return;
           }
           const author = findRealName(commit.author, config);

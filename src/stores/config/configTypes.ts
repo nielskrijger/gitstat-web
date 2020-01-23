@@ -6,7 +6,7 @@ export interface Aliases {
 }
 
 export interface Config {
-  readonly excludeMerges: boolean;
+  readonly includeMergeCommits: boolean;
   readonly includeFileFilters: string[];
   readonly excludeFileFilters: string[];
   readonly authorAliases: Aliases[];

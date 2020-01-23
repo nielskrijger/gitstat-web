@@ -7,7 +7,7 @@ import {
 import { Config, ConfigArrayKeys } from './configTypes';
 
 export const initialState = {
-  excludeMerges: true,
+  includeMergeCommits: false,
   includeFileFilters: ['.*'],
   excludeFileFilters: [],
   authorAliases: [],

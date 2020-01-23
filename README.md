@@ -21,9 +21,15 @@ See the Kanban board [here](https://github.com/nielskrijger/gitstat-web/projects
 
 ## FAQ
 
+__Is the data kept private?__
+
+Yes. The [gitstat.com](https://gitstat.com) website runs within your browser and doesn't store the logfile remotely or even locally. As a result if you refresh the page you'll have to submit the logfile again.
+
+The only data that is stored within your browser are the config settings.
+
 __I miss feature X or found a bug__
 
-If you found a bug or feature suggestions, please open an issue [here](https://github.com/nielskrijger/gitstat-web/issues). Issues/features related to the website should be posted in the [gitstat repository](https://github.com/nielskrijger/gitstat). 
+If you found a bug or have a feature suggestion, please open an issue [here](https://github.com/nielskrijger/gitstat-web/issues). Issues/features related to the website should be posted in the [gitstat repository](https://github.com/nielskrijger/gitstat). 
 
 __Can I contribute?__
 

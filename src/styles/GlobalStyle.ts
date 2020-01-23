@@ -48,6 +48,13 @@ const GlobalStyle = createGlobalStyle`
   
   li {
     line-height: 1.75;
+    
+    p:first-child {
+      margin-top: 0;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
   
   a {
@@ -75,10 +82,10 @@ const GlobalStyle = createGlobalStyle`
   table.plain {
     td {
       border-top: none;
-      padding: 0.2rem;
+      padding: 0.1rem;
     }
     th {
-      padding: 0.2rem;
+      padding: 0.1rem;
     }
   }
 `;

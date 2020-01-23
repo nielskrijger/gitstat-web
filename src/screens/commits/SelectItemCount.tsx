@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, ReactElement, useEffect } from 'react';
+import React, { CSSProperties, FC, ReactElement } from 'react';
 import { ValueType } from 'react-select';
 import styled from 'styled-components';
 import Select from '../../components/form/Select';
@@ -25,24 +25,18 @@ interface SelectItemCountProps {
   readonly style?: CSSProperties;
 }
 
-const SelectItemCount: FC<SelectItemCountProps> = ({ onChange, value, style }): ReactElement => {
-  useEffect(() => {
-    onChange(parseInt(defaultOption.value, 10));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  return (
-    <SelectItemContainer style={style}>
-      <Select
-        name="color"
-        defaultValue={defaultOption}
-        options={options}
-        value={{ value: `${value}`, label: `${value}` }}
-        onChange={(selectedValue: ValueType<SelectOptionType>): void => {
-          onChange(parseInt((selectedValue as SelectOptionType).value, 10));
-        }}
-      />
-    </SelectItemContainer>
-  );
-};
+const SelectItemCount: FC<SelectItemCountProps> = ({ onChange, value, style }): ReactElement => (
+  <SelectItemContainer style={style}>
+    <Select
+      name="color"
+      defaultValue={defaultOption}
+      options={options}
+      value={{ value: `${value}`, label: `${value}` }}
+      onChange={(selectedValue: ValueType<SelectOptionType>): void => {
+        onChange(parseInt((selectedValue as SelectOptionType).value, 10));
+      }}
+    />
+  </SelectItemContainer>
+);
 
 export default SelectItemCount;

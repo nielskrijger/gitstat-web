@@ -18,7 +18,7 @@ const TableControlContainer = styled.div`
 `;
 
 const CommitsScreen: FC = (): ReactElement => {
-  const [itemsPerPage, setItemsPerPage] = useState(20);
+  const [itemsPerPage, setItemsPerPage] = useStoredState('commits:itemspp', 20);
   const [page, setPage] = useState(0);
   const [orderBy, setOrderBy] = useStoredState<OrderByType>('commits:orderby', OrderByType.TIME);
   const { toggleRowCollapse, collapseAll, expandedRows } = useExpandableRows();

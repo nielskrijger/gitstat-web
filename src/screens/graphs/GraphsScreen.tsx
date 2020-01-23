@@ -33,21 +33,22 @@ const GridContainer = styled.div`
 `;
 
 const GraphsScreen: FC = (): ReactElement => {
-  const [timeUnit, setTimeUnit] = useStoredState<TimeUnit>('graph:timeunit', 'month');
-  const [groupBy, setGroupBy] = useStoredState<GroupByType>('graph:groupby', GroupByType.AUTHOR);
-  const [startDate, setStartDate] = useStoredDate('graph:startdate');
-  const [endDate, setEndDate] = useStoredDate('graph:enddate', new Date());
+  const now = new Date();
+  const [timeUnit, setTimeUnit] = useStoredState<TimeUnit>('graphs:timeunit', 'month');
+  const [groupBy, setGroupBy] = useStoredState<GroupByType>('graphs:groupby', GroupByType.AUTHOR);
+  const [startDate, setStartDate] = useStoredDate('graphs:startdate', now);
+  const [endDate, setEndDate] = useStoredDate('graphs:enddate', now);
   const [aggregateFnName, setAggregateFnName] = useStoredState(
-    'graph:aggregate',
+    'graphs:aggregate',
     AggregationFnType.COMMITS,
   );
-  const aggregationFn = useAggregationFn(aggregateFnName!);
+  const aggregationFn = useAggregationFn(aggregateFnName);
 
   // Group commits and apply any date filters
   const commits = useExtendedCommits();
   const groupedCommits = useMemo(() => {
     const filteredByDate = filterCommitsByDate(commits, startDate, endDate);
-    return groupCommits(filteredByDate, groupBy!);
+    return groupCommits(filteredByDate, groupBy);
   }, [commits, startDate, endDate, groupBy]);
 
   // Add aggregation stats and colorize the groups
@@ -70,8 +71,8 @@ const GraphsScreen: FC = (): ReactElement => {
   // Set start date to first commit timestamp
   const minDate = useFirstCommitTimestamp();
   useEffect(() => {
-    if (minDate && !startDate) setStartDate(minDate);
-  }, [minDate, setStartDate, startDate]);
+    if (minDate && startDate === now) setStartDate(minDate);
+  }, [now, minDate, setStartDate, startDate]);
 
   return (
     <div>
@@ -92,7 +93,7 @@ const GraphsScreen: FC = (): ReactElement => {
       <GridContainer>
         <LineChart
           lines={lines}
-          timeUnit={timeUnit!}
+          timeUnit={timeUnit}
           stacked={!hasNegatives /* Stacked graph doesn't render correctly with negative values */}
           style={{ height: '30rem', gridColumn: '1 / -1' }}
         />

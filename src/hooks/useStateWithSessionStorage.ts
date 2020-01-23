@@ -5,8 +5,8 @@ function useStateWithSessionStorage<S>(
   storageKey: string,
   serializer: (value: S) => string,
   deserializer: (value: string) => S,
-  initialValue?: S,
-): [S | undefined, Dispatch<SetStateAction<S | undefined>>] {
+  initialValue: S,
+): [S, Dispatch<SetStateAction<S>>] {
   const storageItem = sessionStorage.getItem(storageKey);
   const [value, setValue] = useState((storageItem && deserializer(storageItem)) || initialValue);
 
@@ -23,8 +23,8 @@ function useStateWithSessionStorage<S>(
 
 export function useStoredDate(
   storageKey: string,
-  initialValue?: Date,
-): [Date | undefined, Dispatch<SetStateAction<Date | undefined>>] {
+  initialValue: Date,
+): [Date, Dispatch<SetStateAction<Date>>] {
   return useStateWithSessionStorage(
     storageKey,
     value => DateTime.fromJSDate(value).toISO(),
@@ -35,8 +35,8 @@ export function useStoredDate(
 
 export function useStoredState<Type>(
   storageKey: string,
-  initialValue?: Type,
-): [Type | undefined, Dispatch<SetStateAction<Type | undefined>>] {
+  initialValue: Type,
+): [Type, Dispatch<SetStateAction<Type>>] {
   return useStateWithSessionStorage(
     storageKey,
     value => JSON.stringify(value),

@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import styled from 'styled-components';
 import Logo from '../components/Logo';
+import { device } from '../styles/styles';
 
 const Container = styled.div`
   width: 100%;
@@ -13,7 +14,11 @@ const Container = styled.div`
 `;
 
 const MessageContainer = styled.div`
-  margin: 1.85rem 3.2rem;
+  margin: 0.4rem;
+
+  @media ${device.small} {
+    margin: 1.85rem 3.2rem;
+  }
 `;
 
 const PageLayout: FC = ({ children }): ReactElement => (

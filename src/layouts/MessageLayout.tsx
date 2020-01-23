@@ -4,7 +4,7 @@ import Logo from '../components/Logo';
 
 const Container = styled.div`
   width: 100%;
-  max-width: 500px;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 
 const MessageContainer = styled.div`
-  margin: 1rem 0 3rem 0;
+  margin: 1rem 0;
 `;
 
 const PageLayout: FC = ({ children }): ReactElement => (

@@ -56,6 +56,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   small {
+    font-size: 0.85em;
     color: ${colors.textSecondary};
   }
   

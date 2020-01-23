@@ -1,12 +1,12 @@
 import { GitStatData } from '../../types/gitStatData';
-import { ClearDataAction, LoadDataAction } from './dataActions';
+import { LoadDataAction } from './dataActions';
 
 export const initialState = {
   version: '',
   projects: [],
 };
 
-export type Actions = LoadDataAction | ClearDataAction;
+export type Actions = LoadDataAction;
 
 const reducer = (state: GitStatData, action: Actions): GitStatData => {
   switch (action.type) {
@@ -15,8 +15,6 @@ const reducer = (state: GitStatData, action: Actions): GitStatData => {
         ...state,
         ...action.data,
       };
-    case 'CLEAR_DATA':
-      return { ...initialState };
     default:
       return { ...state };
   }

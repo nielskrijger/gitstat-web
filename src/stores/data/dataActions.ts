@@ -5,19 +5,10 @@ export interface LoadDataAction {
   readonly data: GitStatData;
 }
 
-export interface ClearDataAction {
-  readonly type: 'CLEAR_DATA';
-}
-
 export function loadData(data: GitStatData): LoadDataAction {
+  sessionStorage.clear();
   return {
     type: 'LOAD_DATA',
     data,
-  };
-}
-
-export function clearData(): ClearDataAction {
-  return {
-    type: 'CLEAR_DATA',
   };
 }

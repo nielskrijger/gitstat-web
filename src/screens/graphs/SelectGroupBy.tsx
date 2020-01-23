@@ -6,8 +6,8 @@ import { GroupByType } from '../../selectors/commits';
 import { SelectOptionType } from '../../types/select';
 
 const options = [
-  { label: 'by project', value: GroupByType.PROJECT },
   { label: 'by author', value: GroupByType.AUTHOR },
+  { label: 'by project', value: GroupByType.PROJECT },
 ];
 
 interface SelectGroupByProps {
@@ -21,7 +21,7 @@ const SelectContainer = styled.div`
 `;
 
 const SelectGroupBy: FC<SelectGroupByProps> = ({
-  value = GroupByType.PROJECT,
+  value = GroupByType.AUTHOR,
   onChange,
 }): ReactElement => (
   <SelectContainer>

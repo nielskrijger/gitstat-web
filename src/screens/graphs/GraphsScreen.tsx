@@ -34,7 +34,7 @@ const GridContainer = styled.div`
 
 const GraphsScreen: FC = (): ReactElement => {
   const [timeUnit, setTimeUnit] = useStoredState<TimeUnit>('graph:timeunit', 'month');
-  const [groupBy, setGroupBy] = useStoredState<GroupByType>('graph:groupby', GroupByType.PROJECT);
+  const [groupBy, setGroupBy] = useStoredState<GroupByType>('graph:groupby', GroupByType.AUTHOR);
   const [startDate, setStartDate] = useStoredDate('graph:startdate');
   const [endDate, setEndDate] = useStoredDate('graph:enddate', new Date());
   const [aggregateFnName, setAggregateFnName] = useStoredState(

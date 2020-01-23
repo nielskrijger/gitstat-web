@@ -25,7 +25,7 @@ const SelectSampleProject: FC = (): ReactElement => {
       setError(undefined);
       setLoading(true);
 
-      // Process the files within a timeout to allow rerendering to take place
+      // Process the files within a timeout to allow re-rendering to take place
       setTimeout(() => {
         const request = new XMLHttpRequest();
         request.open('GET', value, true);
@@ -39,7 +39,7 @@ const SelectSampleProject: FC = (): ReactElement => {
             history.push('/graphs');
           }
         };
-        request.onerror = (): void => setError(`Failed to load data`);
+        request.onerror = (): void => setError('Failed to load data');
         request.send();
       }, 200);
     },

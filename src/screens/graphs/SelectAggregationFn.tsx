@@ -31,8 +31,8 @@ const SelectAggregationFn: FC<SelectAggregationFnProps> = ({
       name="select-aggregation"
       defaultValue={options.find(opt => opt.value === value)}
       options={options}
-      onChange={(selectedValue: ValueType<SelectOptionType>): void => {
-        onChange((selectedValue as SelectOptionType).value as AggregationFnType);
+      onChange={(selected: ValueType<SelectOptionType>): void => {
+        onChange((selected as SelectOptionType).value as AggregationFnType);
       }}
     />
   </SelectContainer>

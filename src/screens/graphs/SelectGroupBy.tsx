@@ -29,8 +29,8 @@ const SelectGroupBy: FC<SelectGroupByProps> = ({
       name="select-group-by"
       defaultValue={options.find(opt => opt.value === value)}
       options={options}
-      onChange={(selectedValue: ValueType<SelectOptionType>): void => {
-        onChange((selectedValue as SelectOptionType).value as GroupByType);
+      onChange={(selected: ValueType<SelectOptionType>): void => {
+        onChange((selected as SelectOptionType).value as GroupByType);
       }}
     />
   </SelectContainer>

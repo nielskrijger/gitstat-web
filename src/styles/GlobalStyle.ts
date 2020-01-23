@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    height: 100%;
+    min-height: 100%;
     display: flex;
     justify-content: center;
     padding: 0;
@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
   
   #root {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
   }
 
   input, button {

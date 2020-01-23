@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import H1 from '../../components/H1';
 import ExcludeFilePatterns from './ExcludeFilePatterns';
 import IncludeFilePatterns from './IncludeFilePatterns';
-import SelectAuthors from './SelectAuthors';
+import SelectAlias from './SelectAlias';
+import SelectExcludeAuthors from './SelectExcludeAuthors';
 
 const ConfigContainer = styled.div`
   max-width: 800px;
@@ -17,6 +18,7 @@ const FirstTD = styled.td`
   vertical-align: top;
   font-weight: bold;
   padding: 0.8rem 0.4rem;
+  width: 10rem;
 `;
 
 const SecondTD = styled.td`
@@ -47,8 +49,15 @@ const ConfigScreen: FC = (): ReactElement => {
         <tr>
           <FirstTD>Exclude file patterns</FirstTD>
           <SecondTD>
-            <Description>Any exclusion filters override the previous patterns.</Description>
+            <Description>Exclusion file filters override inclusion filters.</Description>
             <ExcludeFilePatterns />
+          </SecondTD>
+        </tr>
+        <tr>
+          <FirstTD>Aliases</FirstTD>
+          <SecondTD>
+            <Description>Deduplicate user names.</Description>
+            <SelectAlias />
           </SecondTD>
         </tr>
         <tr>
@@ -57,7 +66,7 @@ const ConfigScreen: FC = (): ReactElement => {
             <Description>
               Exclude the following authors from the stats (including totals).
             </Description>
-            <SelectAuthors />
+            <SelectExcludeAuthors />
           </SecondTD>
         </tr>
       </ConfigTable>

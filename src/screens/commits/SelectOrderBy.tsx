@@ -19,7 +19,6 @@ interface SelectSortByProps {
 
 const SelectContainer = styled.div`
   width: 220px;
-  margin-left: 0.3rem;
 `;
 
 const SelectOrderBy: FC<SelectSortByProps> = ({

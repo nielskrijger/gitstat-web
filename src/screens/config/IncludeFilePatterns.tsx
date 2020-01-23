@@ -25,6 +25,7 @@ const IncludeFilePatterns: FC = (): ReactElement => {
           {config.includeFileFilters.length === 1 ? (
             <StyledInput
               value={value}
+              placeholder="Filepath regex..."
               onChange={(ev): void => {
                 dispatch(updateConfigIndex('includeFileFilters', index, ev.target.value));
               }}
@@ -32,6 +33,7 @@ const IncludeFilePatterns: FC = (): ReactElement => {
           ) : (
             <ClearableInput
               value={value}
+              placeholder="Filepath regex..."
               onChange={(ev): void => {
                 dispatch(updateConfigIndex('includeFileFilters', index, ev.target.value));
               }}
@@ -42,8 +44,8 @@ const IncludeFilePatterns: FC = (): ReactElement => {
           )}
         </FormRow>
       ))}
-      <HoverButton onClick={(): void => dispatch(addConfigIndex('includeFileFilters', '.*'))}>
-        <PlusIcon /> Add another regex pattern
+      <HoverButton onClick={(): void => dispatch(addConfigIndex('includeFileFilters', ''))}>
+        <PlusIcon /> Add regex pattern
       </HoverButton>
     </>
   );

@@ -8,7 +8,7 @@ import { Commit, Project, Signature } from '../types/gitStatData';
  * Memoized function returning a list of all author names in the data set.
  * Any aliases are resolved.
  */
-export function useAuthorNames(): string[] {
+export function useRealAuthorNames(): string[] {
   const { config } = useConfig();
   const allAuthors = useAuthorSignatures();
 
@@ -35,6 +35,25 @@ export function findRealName(sig: Signature, config: Config): Signature {
   const aliases = config.authorAliases.find(({ aliases }) => aliases.includes(sig.name));
   const name = aliases ? aliases.realName : sig.name;
   return { ...sig, name };
+}
+
+/**
+ * Memoized function that returns all author names in the dataset.
+ *
+ * Ignores any aliases.
+ */
+export function useAuthorNames(): string[] {
+  const allAuthors = useAuthorSignatures();
+
+  return useMemo((): string[] => {
+    const realNames = allAuthors.reduce(
+      (names: Set<string>, sig: Signature): Set<string> => names.add(sig.name),
+      new Set<string>(),
+    );
+    const result = Array.from(realNames);
+    result.sort(caseInsensitiveSort);
+    return result;
+  }, [allAuthors]);
 }
 
 /**

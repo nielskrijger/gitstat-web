@@ -32,7 +32,14 @@ const AboutScreen: FC = (): ReactElement => (
         </a>
       </li>
       <li>
-        Logo graph-poly icon from{' '}
+        The excellent{' '}
+        <a target="_blank" rel="noopener noreferrer" href="https://react-select.com/">
+          react-select
+        </a>{' '}
+        library
+      </li>
+      <li>
+        The logo "graph-poly"-icon from{' '}
         <a target="_blank" rel="noopener noreferrer" href="https://webkul.github.io/vivid/">
           vivid icons
         </a>

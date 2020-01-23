@@ -18,6 +18,7 @@ const ExcludeFilePatterns: FC = (): ReactElement => {
         <ClearableInput
           value={value}
           key={index}
+          placeholder="Filepath regex..."
           style={{ paddingBottom: '0.5rem' }}
           onChange={(ev): void => {
             dispatch(updateConfigIndex('excludeFileFilters', index, ev.target.value));
@@ -27,7 +28,7 @@ const ExcludeFilePatterns: FC = (): ReactElement => {
           }}
         />
       ))}
-      <HoverButton onClick={(): void => dispatch(addConfigIndex('excludeFileFilters', '.*'))}>
+      <HoverButton onClick={(): void => dispatch(addConfigIndex('excludeFileFilters', ''))}>
         <PlusIcon /> Add exclude file pattern
       </HoverButton>
     </>

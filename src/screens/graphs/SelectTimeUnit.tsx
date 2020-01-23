@@ -34,8 +34,8 @@ const SelectTimeUnit: FC<SelectPeriodProps> = ({ value = 'month', onChange }): R
         name="select-time-unit"
         defaultValue={timeUnitOptions.find(opt => opt.value === value)}
         options={timeUnitOptions}
-        onChange={(selectedValue: ValueType<SelectOptionType>): void => {
-          onChange((selectedValue as SelectOptionType).value as TimeUnit);
+        onChange={(selected: ValueType<SelectOptionType>): void => {
+          onChange((selected as SelectOptionType).value as TimeUnit);
         }}
       />
     </SelectContainer>

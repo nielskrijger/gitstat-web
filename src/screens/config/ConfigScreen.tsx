@@ -37,7 +37,7 @@ const ConfigScreen: FC = (): ReactElement => {
 
       <ConfigTable>
         <tr>
-          <FirstTD>File patterns</FirstTD>
+          <FirstTD>Include files</FirstTD>
           <SecondTD>
             <Description>
               Defines any regex patterns whose filepath should match. Defaults to all files (
@@ -47,7 +47,7 @@ const ConfigScreen: FC = (): ReactElement => {
           </SecondTD>
         </tr>
         <tr>
-          <FirstTD>Exclude file patterns</FirstTD>
+          <FirstTD>Exclude files</FirstTD>
           <SecondTD>
             <Description>Exclusion file filters override inclusion filters.</Description>
             <ExcludeFilePatterns />

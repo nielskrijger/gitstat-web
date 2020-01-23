@@ -4,7 +4,8 @@ import H1 from '../../components/H1';
 import H2 from '../../components/H2';
 import PageLayout from '../../layouts/PageLayout';
 import { colors } from '../../styles/colors';
-import DataForm from '../upload/DataForm';
+import UploadDragAndDrop from '../upload/UploadDragAndDrop';
+import UploadInstructions from '../upload/UploadInstructions';
 import SelectSampleProject from './SelectSampleProject';
 
 const Disclaimer = styled.p`
@@ -17,11 +18,15 @@ const HomeScreen: FC = (): ReactElement => (
   <PageLayout>
     <H1>Git stats & graphs</H1>
     <p>Visualize your project&apos;s git history.</p>
-    <DataForm />
+
+    <H2>Upload GIT history</H2>
+    <UploadInstructions />
+    <UploadDragAndDrop />
     <Disclaimer>
       This datafile is never stored! If you reopen or refresh this website you&apos;ll have to
       supply the same file again.
     </Disclaimer>
+
     <H2>Alternatively...</H2>
     <p>Select a sample project:</p>
     <SelectSampleProject />

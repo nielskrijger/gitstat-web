@@ -29,6 +29,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: bold;
   }
   
+  code {
+    font-family: 'Inconsolata', monospace;
+  }
+  
   #root {
     width: 100%;
     min-height: 100%;
@@ -66,6 +70,16 @@ const GlobalStyle = createGlobalStyle`
   }
   table th {
     padding: 0.4rem;
+  }
+  
+  table.plain {
+    td {
+      border-top: none;
+      padding: 0.2rem;
+    }
+    th {
+      padding: 0.2rem;
+    }
   }
 `;
 

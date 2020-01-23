@@ -39,7 +39,7 @@ const AboutScreen: FC = (): ReactElement => (
         library
       </li>
       <li>
-        The logo "graph-poly"-icon from{' '}
+        The logo &quot;graph-poly&quot;-icon from{' '}
         <a target="_blank" rel="noopener noreferrer" href="https://webkul.github.io/vivid/">
           vivid icons
         </a>

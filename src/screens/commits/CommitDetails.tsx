@@ -48,13 +48,13 @@ const CommitDetails: FC<CommitDetailProps> = ({ commit }): ReactElement => {
           <NL2BR text={description.replace(/\n\n+/g, '\n').trim()} />
         </p>
       )}
-      <table>
+      <table className="plain">
         <tbody>
           {commit.extendedFiles.map(
             (file): ReactElement => (
               <tr key={file.filepath}>
                 <td style={{ color: file.excluded ? colors.textDisabled : colors.text }}>
-                  {file.filepath}
+                  <code>{file.filepath}</code>
                 </td>
                 <td style={{ textAlign: 'right' }}>
                   <Addition excluded={file.excluded}>{file.additions}</Addition>

@@ -8,7 +8,10 @@ import { loadData } from '../../stores/data/dataActions';
 import { GitDataStore } from '../../stores/data/GitDataProvider';
 import { SelectOptionType } from '../../types/select';
 
-const options = [{ label: 'styled-components', value: 'styled-components.json' }];
+const options = [
+  { label: 'react', value: 'react.json' },
+  { label: 'helm', value: 'helm.json' },
+];
 
 const SelectContainer = styled.div`
   margin-left: 0.3rem;

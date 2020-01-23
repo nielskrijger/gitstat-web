@@ -18,7 +18,7 @@ interface FormErrorProps {
  * This component should only be used to show unexpected backend errors.
  * All other form error are field-bound.
  */
-const FormError: FC<FormErrorProps> = ({ error, show }): ReactElement | null => {
+const FormError: FC<FormErrorProps> = ({ error, show = true }): ReactElement | null => {
   if (error === undefined || !show) {
     return null;
   }

@@ -17,7 +17,6 @@ interface SelectGroupByProps {
 
 const SelectContainer = styled.div`
   width: 140px;
-  margin-left: 0.3rem;
 `;
 
 const SelectGroupBy: FC<SelectGroupByProps> = ({

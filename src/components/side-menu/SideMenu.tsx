@@ -93,7 +93,7 @@ const SideMenu: FC = (): ReactElement => {
           <MenuItem to="/commits" icon={<CommitIcon />} title="Commits" iconOnly={iconOnly} />
           <MenuItem
             to="/data"
-            icon={<UploadIcon style={{ position: 'relative', top: '-4px' }} />}
+            icon={<UploadIcon style={{ position: 'relative', top: '-2px' }} />}
             title="Change data"
             iconOnly={iconOnly}
           />

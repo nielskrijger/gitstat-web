@@ -5,10 +5,16 @@ import styled from 'styled-components';
 import Select from '../../components/form/Select';
 import { SelectOptionType } from '../../types/select';
 
-export const timeUnitOptions: SelectOptionType[] = [
+interface SelectTimeUnitOption {
+  label: string;
+  value: TimeUnit;
+}
+
+export const timeUnitOptions: SelectTimeUnitOption[] = [
   { label: 'per day', value: 'day' },
   { label: 'per week', value: 'week' },
   { label: 'per month', value: 'month' },
+  { label: 'per year', value: 'year' },
 ];
 
 const defaultOption = timeUnitOptions[2];
@@ -20,19 +26,18 @@ interface SelectPeriodProps {
 
 const SelectContainer = styled.div`
   width: 130px;
-  margin-left: 0.3rem;
 `;
 
 const SelectTimeUnit: FC<SelectPeriodProps> = ({ value = 'month', onChange }): ReactElement => {
   useEffect(() => {
-    onChange(defaultOption.value as TimeUnit);
+    onChange(defaultOption.value);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <SelectContainer>
       <Select
         name="select-time-unit"
-        defaultValue={timeUnitOptions.find(opt => opt.value === value)}
+        value={timeUnitOptions.find(opt => opt.value === value)}
         options={timeUnitOptions}
         onChange={(selected: ValueType<SelectOptionType>): void => {
           onChange((selected as SelectOptionType).value as TimeUnit);

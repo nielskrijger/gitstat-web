@@ -20,7 +20,7 @@ const MenuItemLink = styled(NavLink)<MenuItemLinkProps>`
   display: flex;
   flex-direction: row;
   justify-content: ${({ iconOnly }): string => (iconOnly ? 'center' : 'flex-start')};
-  align-itms: 'center';
+  align-items: center;
   color: ${colors.text};
   text-decoration: none;
   font-size: 1rem;

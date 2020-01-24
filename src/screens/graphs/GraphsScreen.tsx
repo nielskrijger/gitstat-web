@@ -22,7 +22,7 @@ import { ExtendedCommitGroup } from '../../types/commits';
 import { periodCount } from '../../utils/time';
 import SelectAggregationFn from './SelectAggregationFn';
 import SelectGroupBy from './SelectGroupBy';
-import SelectTimeUnit from './SelectTimeUnit';
+import SelectTimeUnit, { timeUnitOptions } from './SelectTimeUnit';
 import SummaryTable from './SummaryTable';
 
 const GridContainer = styled.div`
@@ -32,9 +32,35 @@ const GridContainer = styled.div`
   margin-top: 0.5rem;
 `;
 
+const ControlContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  > :not(:first-child) {
+    margin-left: 0.3rem;
+  }
+`;
+
+/**
+ * Returns the time unit that is closest to a specified number of periods
+ * between a given start & end date without exceeding it.
+ */
+const determineInitialTimeunit = (startDate: Date, endDate: Date, maxPeriods = 100): TimeUnit => {
+  let i = 0;
+  let initialTimeUnit = timeUnitOptions[i].value;
+  while (
+    periodCount(startDate, endDate, initialTimeUnit) > maxPeriods &&
+    i < timeUnitOptions.length - 1
+  ) {
+    i++;
+    initialTimeUnit = timeUnitOptions[i].value;
+  }
+  return initialTimeUnit;
+};
+
 const GraphsScreen: FC = (): ReactElement => {
   const now = new Date();
-  const [timeUnit, setTimeUnit] = useStoredState<TimeUnit>('graphs:timeunit', 'month');
+  const [timeUnit, setTimeUnit] = useStoredState<TimeUnit>('graphs:timeunit', 'day');
   const [groupBy, setGroupBy] = useStoredState<GroupByType>('graphs:groupby', GroupByType.AUTHOR);
   const [startDate, setStartDate] = useStoredDate('graphs:startdate', now);
   const [endDate, setEndDate] = useStoredDate('graphs:enddate', now);
@@ -43,6 +69,15 @@ const GraphsScreen: FC = (): ReactElement => {
     AggregationFnType.COMMITS,
   );
   const aggregationFn = useAggregationFn(aggregateFnName);
+
+  // Set initial values
+  const minDate = useFirstCommitTimestamp();
+  useEffect(() => {
+    if (minDate && startDate === now) {
+      setStartDate(minDate);
+      setTimeUnit(determineInitialTimeunit(minDate, endDate));
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Group commits and apply any date filters
   const commits = useExtendedCommits();
@@ -68,28 +103,17 @@ const GraphsScreen: FC = (): ReactElement => {
   );
   const slices = useSlices(extendedGroups, aggregationFn);
 
-  // Set start date to first commit timestamp
-  const minDate = useFirstCommitTimestamp();
-  useEffect(() => {
-    if (minDate && startDate === now) setStartDate(minDate);
-  }, [now, minDate, setStartDate, startDate]);
-
   return (
-    <div>
+    <>
       <H1>Graphs</H1>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <ControlContainer>
         <SelectAggregationFn value={aggregateFnName} onChange={setAggregateFnName} />
         <SelectGroupBy value={groupBy} onChange={setGroupBy} />
         <SelectTimeUnit value={timeUnit} onChange={setTimeUnit} />
-        <DatePicker value={startDate} onChange={setStartDate} style={{ marginLeft: '0.3rem' }} />
-        <div style={{ marginLeft: '0.3rem', fontSize: '1.3em' }}>/</div>
-        <DatePicker
-          value={endDate}
-          onChange={setEndDate}
-          style={{ marginLeft: '0.3rem' }}
-          todayButton
-        />
-      </div>
+        <DatePicker value={startDate} onChange={setStartDate} />
+        <div style={{ fontSize: '1.3em' }}>/</div>
+        <DatePicker value={endDate} onChange={setEndDate} todayButton />
+      </ControlContainer>
       <GridContainer>
         <LineChart
           lines={lines}
@@ -102,7 +126,7 @@ const GraphsScreen: FC = (): ReactElement => {
 
         <SummaryTable groups={extendedGroups} others={others} />
       </GridContainer>
-    </div>
+    </>
   );
 };
 

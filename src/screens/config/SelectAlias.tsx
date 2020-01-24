@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useMemo } from 'react';
 import styled from 'styled-components';
 import CrossSVG from '../../../assets/icons/cross.svg';
 import HoverButton from '../../components/buttons/HoverButton';
-import IconButton from '../../components/buttons/IconButton';
+import IconLink from '../../components/buttons/IconLink';
 import PlusIcon from '../../components/icons/PlusIcon';
 import { useAuthorNames } from '../../selectors/authors';
 import {
@@ -52,13 +52,13 @@ const SelectAlias: FC = (): ReactElement => {
             }}
           />
 
-          <IconButton
+          <IconLink
             onClick={(): void => {
               dispatch(removeConfigIndex('authorAliases', index));
             }}
           >
             <CrossSVG />
-          </IconButton>
+          </IconLink>
         </FormRow>
       ))}
       <HoverButton

@@ -25,8 +25,7 @@ const MenuItemLink = styled(NavLink)<MenuItemLinkProps>`
   text-decoration: none;
   font-size: 1rem;
   font-weight: 400;
-  width: 100%;
-  padding: ${({ iconOnly }): string => (iconOnly ? '0.6rem 0.3rem' : '0.4rem 1.1rem')};
+  padding: ${({ iconOnly }): string => (iconOnly ? '0.6rem' : '0.4rem 1.1rem')};
 
   &:hover {
     color: ${colors.link};

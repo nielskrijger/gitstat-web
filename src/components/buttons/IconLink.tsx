@@ -2,11 +2,9 @@ import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 import { transitionDelay } from '../../styles/styles';
 
-const IconButton = styled.button`
+const IconLink = styled.a`
   all: unset;
   cursor: pointer;
-  width: 1.1rem;
-  height: 1.3rem;
   display: inline-block;
   margin: 0 0.5rem;
   color: ${colors.text};
@@ -17,4 +15,4 @@ const IconButton = styled.button`
   }
 `;
 
-export default IconButton;
+export default IconLink;

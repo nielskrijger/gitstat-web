@@ -1,7 +1,7 @@
 import React, { CSSProperties, FC, ReactElement } from 'react';
 import styled from 'styled-components';
 import CollapseIcon from '../../../assets/icons/collapse.svg';
-import TransparentButton from '../../components/buttons/TransparentButton';
+import IconLink from '../../components/buttons/IconLink';
 import { colors } from '../../styles/colors';
 import { borderRadius } from '../../styles/styles';
 
@@ -10,7 +10,7 @@ interface CollapseAllButtonProps {
   readonly style?: CSSProperties;
 }
 
-const Icon = styled(TransparentButton)`
+const Icon = styled(IconLink)`
   width: 1.8rem;
   height: 1.8rem;
   display: inline-block;

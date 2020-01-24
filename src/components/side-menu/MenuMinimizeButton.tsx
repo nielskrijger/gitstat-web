@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import LeftArrowIcon from '../../../assets/icons/double-arrow-left.svg';
 import { colors } from '../../styles/colors';
 import { transitionDelay } from '../../styles/styles';
-import IconButton from '../buttons/IconButton';
+import IconLink from '../buttons/IconLink';
+import Icon from '../icons/Icon';
 
 interface MenuMinimizeButtonProps {
   readonly flip: boolean;
   readonly onClick: () => void;
 }
 
-const ButtonContainer = styled(IconButton)<MenuMinimizeButtonProps>`
+const ButtonContainer = styled(IconLink)<MenuMinimizeButtonProps>`
   position: absolute;
   top: 1.8rem;
   right: -0.9rem;
@@ -19,8 +20,6 @@ const ButtonContainer = styled(IconButton)<MenuMinimizeButtonProps>`
   border: 1px solid ${colors.border};
   border-radius: 50%;
   background-color: ${colors.background};
-  width: 1rem;
-  height: 1rem;
   transform: rotate(${({ flip }): string => (flip ? '180deg' : '0deg')});
   transition: all ${transitionDelay * 1.5}ms linear;
 
@@ -33,7 +32,9 @@ const ButtonContainer = styled(IconButton)<MenuMinimizeButtonProps>`
 
 const MenuMinimizeButton: FC<MenuMinimizeButtonProps> = (props): ReactElement => (
   <ButtonContainer {...props}>
-    <LeftArrowIcon />
+    <Icon style={{ width: '0.9rem', height: '0.9rem' }}>
+      <LeftArrowIcon />
+    </Icon>
   </ButtonContainer>
 );
 

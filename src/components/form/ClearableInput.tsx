@@ -1,7 +1,7 @@
 import React, { FC, InputHTMLAttributes, ReactElement } from 'react';
 import styled from 'styled-components';
 import CrossSVG from '../../../assets/icons/cross.svg';
-import IconButton from '../buttons/IconButton';
+import IconLink from '../buttons/IconLink';
 import StyledInput from './StyledInput';
 
 interface InputProps {
@@ -23,9 +23,9 @@ const ClearableInput: FC<InputProps & InputHTMLAttributes<HTMLInputElement>> = (
   return (
     <Container style={style}>
       <StyledInput type="text" {...props} />
-      <IconButton onClick={onClear}>
+      <IconLink onClick={onClear}>
         <CrossSVG />
-      </IconButton>
+      </IconLink>
     </Container>
   );
 };

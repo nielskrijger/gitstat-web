@@ -29,8 +29,8 @@ const MenuContainer = styled.div<MenuContainerProps>`
   flex-direction: column;
   border-right: 1px solid ${colors.border};
   padding: 0 1rem;
-  width: ${({ mode }): string => (mode === MenuModes.EXPANDED ? '14rem' : '5rem')};
   position: relative;
+  width: ${({ mode }): string => (mode === MenuModes.EXPANDED ? '11rem' : 'auto')};
 `;
 
 const LogoContainer = styled.div`

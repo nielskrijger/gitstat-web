@@ -11,11 +11,12 @@ interface ButtonProps {
 }
 
 const StyledButton = styled.button`
+  display: flex;
+  flex-direction: row;
   border: 0;
   border-radius: ${borderRadius};
   color: ${colors.textSecondary};
   padding: 0.6rem;
-  font-weight: 400;
   background-color: transparent;
   outline: none;
   width: 100%;

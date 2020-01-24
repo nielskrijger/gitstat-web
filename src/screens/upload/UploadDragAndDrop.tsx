@@ -7,7 +7,7 @@ import Loader from '../../components/Loader';
 import { loadData } from '../../stores/data/dataActions';
 import { GitDataStore } from '../../stores/data/GitDataProvider';
 import { colors } from '../../styles/colors';
-import { borderRadius } from '../../styles/styles';
+import { borderRadius, transitionDelay } from '../../styles/styles';
 import { GitStatData } from '../../types/gitStatData';
 
 const getColor = (props: DropzoneRootProps): string => {
@@ -38,7 +38,7 @@ const Container = styled.div<DropzoneRootProps>`
   background-color: ${colors.inputBackground};
   color: ${colors.textSecondary};
   outline: none;
-  transition: all 0.2s ease-in-out;
+  transition: all ${transitionDelay}ms ease-in-out;
 
   &:hover {
     background-color: ${lighten(0.01, colors.background)};

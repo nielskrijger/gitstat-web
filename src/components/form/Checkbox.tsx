@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
+import { transitionDelay } from '../../styles/styles';
 
 const CheckboxContainer = styled.label`
   display: flex;
@@ -40,7 +41,7 @@ const StyledCheckbox = styled.div<StyledCheckboxProps>`
   background: ${({ checked }): string => (checked ? colors.primary : colors.inputBackground)};
   border-radius: 3px;
   border: 1px solid ${colors.inputBorder};
-  transition: all 150ms;
+  transition: all ${transitionDelay}ms;
   cursor: pointer;
   margin-right: 0.5rem;
 

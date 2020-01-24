@@ -4,44 +4,68 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 
-interface SideMenuProps {
+interface MenuItemProps {
   readonly to: H.LocationDescriptor;
   readonly icon: ReactElement;
+  readonly title: string;
+  readonly iconOnly?: boolean;
+  readonly exact?: boolean;
 }
 
-const MenuItemLink = styled(NavLink)`
-  display: block;
+interface MenuItemLinkProps {
+  readonly iconOnly: boolean;
+}
+
+const MenuItemLink = styled(NavLink)<MenuItemLinkProps>`
+  display: flex;
+  flex-direction: row;
+  justify-content: ${({ iconOnly }): string => (iconOnly ? 'center' : 'flex-start')};
+  align-itms: 'center';
   color: ${colors.text};
   text-decoration: none;
   font-size: 1rem;
   font-weight: 400;
-  flex: 1;
-  flex-direction: row;
-  padding: 0.3rem 1.4rem;
+  width: 100%;
+  padding: ${({ iconOnly }): string => (iconOnly ? '0.6rem 0.3rem' : '0.4rem 1.1rem')};
 
   &:hover {
     color: ${colors.link};
   }
 `;
 
-const MenuIcon = styled.div`
-  width: 1.1rem;
-  height: 1.1rem;
+interface MenuIconProps {
+  readonly largeIcon: boolean;
+}
+
+const MenuIcon = styled.div<MenuIconProps>`
+  width: ${({ largeIcon }): string => (largeIcon ? '1.6rem' : '1.4rem')};
+  height: ${({ largeIcon }): string => (largeIcon ? '1.6rem' : '1.4rem')};
   display: inline-block;
-  margin-right: 1rem;
-  vertical-align: -0.5rem;
 `;
 
-const MenuItem: FC<SideMenuProps> = ({ to, icon, children }): ReactElement => (
+const MenuText = styled.span`
+  margin-left: 1rem;
+`;
+
+const MenuItem: FC<MenuItemProps> = ({
+  to,
+  icon,
+  title,
+  exact = false,
+  iconOnly = false,
+}): ReactElement => (
   <MenuItemLink
     to={to}
+    exact={exact}
     activeStyle={{
       fontWeight: 'bold',
       color: colors.link,
     }}
+    iconOnly={iconOnly}
+    title={title}
   >
-    <MenuIcon>{icon}</MenuIcon>
-    {children}
+    <MenuIcon largeIcon={iconOnly}>{icon}</MenuIcon>
+    {!iconOnly && <MenuText>{title}</MenuText>}
   </MenuItemLink>
 );
 

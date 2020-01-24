@@ -44,24 +44,6 @@ const AboutScreen: FC = (): ReactElement => (
           vivid icons
         </a>
       </li>
-      <li>
-        From{' '}
-        <a target="_blank" rel="noopener noreferrer" href="https://thenounproject.com">
-          The Noun Project
-        </a>
-        :
-        <ul>
-          <li>commit icon by Phạm Thanh Lộc</li>
-          <li>Upload icon by Creative Stall</li>
-          <li>about icon by MRK</li>
-          <li>overview icon by Shiva</li>
-          <li>Git Merge icon by icon 54</li>
-          <li>person icon by Caitlin George</li>
-          <li>collapse vertical icon by Omar Safaa</li>
-          <li>line chart by Marie Van den Broeck</li>
-          <li>Plus by Aybiget</li>
-        </ul>
-      </li>
     </ul>
   </>
 );

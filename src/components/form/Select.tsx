@@ -1,7 +1,7 @@
 import React, { CSSProperties, ReactElement } from 'react';
 import ReactSelect, { OptionsType, Props } from 'react-select';
 import { colors } from '../../styles/colors';
-import { borderRadius } from '../../styles/styles';
+import { borderRadius, transitionDelay } from '../../styles/styles';
 import { SelectOptionType } from '../../types/select';
 
 // The styling setup here follows the recommended approach from https://react-select.com/styles.
@@ -18,7 +18,7 @@ const indicatorStyle = (provided: CSSProperties): any => ({
   ...provided,
   color: colors.text,
   cursor: 'pointer',
-  transition: 'all 0.2s ease-in-out',
+  transition: `all ${transitionDelay}ms ease-in-out`,
   '&:hover': {
     color: colors.textDisabled,
   },
@@ -45,7 +45,7 @@ const customStyles = {
   singleValue: (provided: CSSProperties, state: Props): CSSProperties => ({
     ...provided,
     opacity: state.isDisabled ? 0.8 : 1,
-    transition: 'opacity 300ms',
+    transition: `opacity ${transitionDelay}ms`,
     color: colors.text,
   }),
   menu: (provided: CSSProperties): CSSProperties => ({

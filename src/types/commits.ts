@@ -40,5 +40,3 @@ export interface Aggregate {
 export type ColoredCommitGroup = CommitGroup & ColoredElement;
 
 export type AggregatedCommitGroup = CommitGroup & Aggregate;
-
-export type ExtendedCommitGroup = ColoredCommitGroup & AggregatedCommitGroup;

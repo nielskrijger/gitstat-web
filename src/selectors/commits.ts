@@ -1,10 +1,8 @@
 import { DateTime } from 'luxon';
-import { transparentize } from 'polished';
 import { useMemo } from 'react';
 import { useExtendedCommits } from '../hooks/useExtendedCommits';
 import {
   AggregatedCommitGroup,
-  ColoredCommitGroup,
   CommitAggregationFn,
   CommitFilterFn,
   CommitGroup,
@@ -93,21 +91,6 @@ export enum GroupByType {
   AUTHOR = 'author',
   FILETYPE = 'filetype',
 }
-
-const COLORS = [
-  '#FF4136',
-  '#0074D9',
-  '#2ECC40',
-  '#FF851B',
-  '#7FDBFF',
-  '#B10DC9',
-  '#FFDC00',
-  '#39CCCC',
-  '#01FF70',
-  '#85144b',
-  '#F012BE',
-];
-const DARKEN_BACKGROUND = 0.8;
 
 /**
  * Groups commits using a groupBy function and sets when the first and last commit
@@ -227,23 +210,4 @@ export const aggregateCommits = (
   }));
   result.sort((a, b) => (a.aggregate > b.aggregate ? -1 : 1));
   return result;
-};
-
-/**
- * Adds colors to the CommitGroup. If there are more than 10 groups
- * it's recommended to assign colors after the groups are sorted from most
- * significant to least significant, that way it's unlikely the same color
- * will appear in adjacent lines/bars/slices within your graph.
- */
-export const colorizeGroups = (groups: CommitGroup[]): ColoredCommitGroup[] => {
-  let colorIndex = 0;
-  return groups.map(group => {
-    const color = COLORS[colorIndex % COLORS.length];
-    colorIndex += 1;
-    return {
-      ...group,
-      borderColor: color,
-      backgroundColor: transparentize(DARKEN_BACKGROUND, color),
-    };
-  });
 };

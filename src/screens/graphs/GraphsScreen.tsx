@@ -13,13 +13,14 @@ import { useSlices } from '../../hooks/useSlices';
 import { useStoredDate, useStoredState } from '../../hooks/useStateWithSessionStorage';
 import {
   aggregateCommits,
-  colorizeGroups,
   filterCommitsByDate,
   GroupByType,
   groupCommits,
   useFirstCommitTimestamp,
 } from '../../selectors/commits';
-import { ExtendedCommitGroup } from '../../types/commits';
+import { ColoredElement } from '../../types/coloredElement';
+import { AggregatedCommitGroup } from '../../types/commits';
+import { colorize } from '../../utils/colorize';
 import { periodCount } from '../../utils/time';
 import SelectAggregationFn from './SelectAggregationFn';
 import SelectGroupBy from './SelectGroupBy';
@@ -80,20 +81,24 @@ const GraphsScreen: FC = (): ReactElement => {
 
   // Add aggregation stats and colorize the groups
   const periods = periodCount(startDate, endDate, timeUnit);
-  const extendedGroups = useMemo((): ExtendedCommitGroup[] => {
-    const grouped = aggregateCommits(groupedCommits, aggregationFn, periods);
-    return colorizeGroups(grouped) as ExtendedCommitGroup[];
+  const aggregatedCommitGroups = useMemo((): AggregatedCommitGroup[] => {
+    return aggregateCommits(groupedCommits, aggregationFn, periods);
   }, [groupedCommits, aggregationFn, periods]);
+
+  // Colorize groups
+  const colorizedChartData = useMemo((): (AggregatedCommitGroup & ColoredElement)[] => {
+    return colorize(aggregatedCommitGroups);
+  }, [aggregatedCommitGroups]);
 
   // Generate line data
   const { lines, others, hasNegatives } = useLines(
-    extendedGroups,
+    colorizedChartData,
     aggregationFn,
     timeUnit,
     startDate,
     endDate,
   );
-  const slices = useSlices(extendedGroups, aggregationFn);
+  const slices = useSlices(colorizedChartData, aggregationFn);
 
   return (
     <>
@@ -116,7 +121,7 @@ const GraphsScreen: FC = (): ReactElement => {
 
         <PieChart slices={slices} style={{ height: '30rem' }} />
 
-        <SummaryTable groups={extendedGroups} timeUnit={timeUnit} others={others} />
+        <SummaryTable groups={aggregatedCommitGroups} timeUnit={timeUnit} others={others} />
       </GridContainer>
     </>
   );

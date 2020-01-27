@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { Slice } from '../components/charts/PieChart';
-import { CommitAggregationFn, ExtendedCommit, ExtendedCommitGroup } from '../types/commits';
+import { ColoredCommitGroup, CommitAggregationFn, ExtendedCommit } from '../types/commits';
 
 export function useSlices(
-  commits: ExtendedCommitGroup[],
+  commits: ColoredCommitGroup[],
   aggregationFn: CommitAggregationFn | null,
 ): Slice[] {
   return useMemo((): Slice[] => {
@@ -11,7 +11,7 @@ export function useSlices(
       return [];
     }
 
-    return commits.reduce((acc: Slice[], group: ExtendedCommitGroup): Slice[] => {
+    return commits.reduce((acc: Slice[], group: ColoredCommitGroup): Slice[] => {
       let slice = acc.find(elm => elm.label === group.name);
       if (!slice) {
         slice = {

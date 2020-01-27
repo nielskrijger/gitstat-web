@@ -1,10 +1,10 @@
 import { TimeUnit } from 'chart.js';
 import React, { FC, ReactElement } from 'react';
-import { ExtendedCommitGroup } from '../../types/commits';
+import { AggregatedCommitGroup } from '../../types/commits';
 import { formatNumber } from '../../utils/number';
 
 interface SummaryTableProps {
-  groups: ExtendedCommitGroup[];
+  groups: AggregatedCommitGroup[];
   timeUnit: TimeUnit;
   others: string[];
 }

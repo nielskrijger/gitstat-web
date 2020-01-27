@@ -1,7 +1,7 @@
 import { DateTime, DurationUnit } from 'luxon';
 import { useMemo } from 'react';
 import { ChartData, Line } from '../components/charts/LineChart';
-import { CommitAggregationFn, ExtendedCommit, ExtendedCommitGroup } from '../types/commits';
+import { ColoredCommitGroup, CommitAggregationFn, ExtendedCommit } from '../types/commits';
 
 // Above this threshold lines are grouped into "Others".
 const MAX_DATA_POINTS = 2000;
@@ -17,7 +17,7 @@ interface LinesView {
  * are ordered from hieghest to lowest
  */
 export function useLines(
-  groups: ExtendedCommitGroup[],
+  groups: ColoredCommitGroup[],
   aggregationFn: CommitAggregationFn | null,
   timeUnit?: DurationUnit,
   start?: Date,
@@ -25,7 +25,11 @@ export function useLines(
 ): LinesView {
   return useMemo((): LinesView => {
     if (!(aggregationFn && start && end && timeUnit)) {
-      return { lines: [], others: [], hasNegatives: false };
+      return {
+        lines: [],
+        others: [],
+        hasNegatives: false,
+      };
     }
 
     const startDate = DateTime.fromJSDate(start);
@@ -45,7 +49,7 @@ export function useLines(
  * dates for which no data is available.
  */
 function generateLineData(
-  groups: ExtendedCommitGroup[],
+  groups: ColoredCommitGroup[],
   aggregationFn: CommitAggregationFn,
   timeUnit: DurationUnit,
   startDate: DateTime,

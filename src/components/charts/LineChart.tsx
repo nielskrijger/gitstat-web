@@ -20,7 +20,7 @@ export interface LineData {
   data: ChartData[];
 }
 
-export type Line = LineData & ColoredElement;
+export type Line = ColoredElement & LineData;
 
 interface LineChartProps {
   readonly lines: Line[];

@@ -8,8 +8,13 @@ import { Commit } from '../types/gitStatData';
  * Exclusion file filters override inclusion file filters.
  */
 export const extendedFiles = (commit: Commit, config: Config): ExtendedCommitFile[] => {
-  const includeFileFilters = config.includeFileFilters.map(value => new RegExp(value));
-  const excludeFileFilters = config.excludeFileFilters.map(value => new RegExp(value));
+  const includeFileFilters = config.includeFileFilters
+    .filter(value => !!value)
+    .map(value => new RegExp(value));
+  const excludeFileFilters = config.excludeFileFilters
+    .filter(value => !!value)
+    .map(value => new RegExp(value));
+
   return commit.files.map(
     (file): ExtendedCommitFile => {
       let excluded = excludeFileFilters.some((excludeFilter): boolean =>

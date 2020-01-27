@@ -11,18 +11,18 @@ export function useSlices(
       return [];
     }
 
-    return commits.reduce((acc: Slice[], current: ExtendedCommitGroup): Slice[] => {
-      let slice = acc.find(elm => elm.label === current.group);
+    return commits.reduce((acc: Slice[], group: ExtendedCommitGroup): Slice[] => {
+      let slice = acc.find(elm => elm.label === group.name);
       if (!slice) {
         slice = {
-          label: current.group,
+          label: group.name,
           value: 0,
-          backgroundColor: current.backgroundColor,
-          borderColor: current.borderColor,
+          backgroundColor: group.backgroundColor,
+          borderColor: group.borderColor,
         };
         acc.push(slice);
       }
-      slice.value += current.commits.reduce(
+      slice.value += group.commits.reduce(
         (sum, curr: ExtendedCommit): number => sum + aggregationFn(curr),
         0,
       );

@@ -15,7 +15,7 @@ import MenuItem from './MenuItem';
 import MenuMinimizeButton from './MenuMinimizeButton';
 
 export enum MenuModes {
-  COLLAPSED = 'collapsed', // TODO not supported for now, add this for mobile
+  COLLAPSED = 'collapsed', // TODO not implemented, add this for mobile
   ICONS = 'icons',
   EXPANDED = 'expanded',
 }

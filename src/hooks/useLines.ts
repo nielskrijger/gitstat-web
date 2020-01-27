@@ -65,7 +65,7 @@ function generateLineData(
       });
 
       return {
-        label: group.group,
+        label: group.name,
         data: zeroFilled,
         borderColor: group.borderColor,
         backgroundColor: group.backgroundColor,

@@ -91,6 +91,7 @@ export const filterCommitsByDate = (
 export enum GroupByType {
   PROJECT = 'project',
   AUTHOR = 'author',
+  FILETYPE = 'filetype',
 }
 
 const COLORS = [
@@ -109,47 +110,106 @@ const COLORS = [
 const DARKEN_BACKGROUND = 0.8;
 
 /**
- * Groups commits using a groupBy function.
+ * Groups commits using a groupBy function and sets when the first and last commit
+ * of that name occurred.
  */
 export const groupCommits = (commits: ExtendedCommit[], groupBy: GroupByType): CommitGroup[] => {
   const groupFn = groupByFunction(groupBy);
-  const groupedCommits: CommitGroup[] = [];
+  const groups: CommitGroup[] = [];
   if (commits) {
-    commits.forEach((commit: ExtendedCommit): void => {
-      const groupValue = groupFn(commit);
-      let group = groupedCommits.find(elm => elm.group === groupValue);
+    commits.forEach((originalCommit: ExtendedCommit): void => {
+      groupFn(originalCommit).forEach(({ name, commit }) => {
+        let group = groups.find(elm => elm.name === name);
 
-      // If group doesn't exist add a new one
-      if (!group) {
-        group = {
-          group: groupValue,
-          commits: [],
-        };
-        groupedCommits.push(group);
-      }
+        // If name doesn't exist add a new one
+        if (!group) {
+          group = {
+            name,
+            commits: [],
+            firstCommit: DateTime.fromISO(commit.author.time),
+            lastCommit: DateTime.fromISO(commit.author.time),
+          };
+          groups.push(group);
+        }
 
-      // Add the commit to the group
-      group.commits.push(commit);
+        // Add the commit to the name
+        group.commits.push(commit);
+        if (DateTime.fromISO(commit.author.time) < group.firstCommit) {
+          group.firstCommit = DateTime.fromISO(commit.author.time);
+        }
+        if (DateTime.fromISO(commit.author.time) > group.lastCommit) {
+          group.lastCommit = DateTime.fromISO(commit.author.time);
+        }
+      });
     });
   }
-  groupedCommits.sort((a, b) => a.group.localeCompare(b.group));
-  return groupedCommits;
+  groups.sort((a, b) => a.name.localeCompare(b.name));
+  return groups;
 };
 
+const extensionRegex = /(?:\.([^.]+))?$/;
+
+interface GroupedCommit {
+  name: string;
+  commit: ExtendedCommit;
+}
+
 function groupByFunction(groupBy: GroupByType) {
-  return (commit: ExtendedCommit): string => {
+  return (commit: ExtendedCommit): GroupedCommit[] => {
     switch (groupBy) {
+      case GroupByType.FILETYPE:
+        // Create separate commits for each file extension.
+        // TODO this is a bit nasty, try to find a cleaner model that
+        //  automatically recomputes totals.
+        return commit.extendedFiles.reduce((acc: GroupedCommit[], extendedFile) => {
+          if (extendedFile.excluded) {
+            return acc;
+          }
+
+          const split = extensionRegex.exec(extendedFile.filepath);
+          const extension = split && split[1] ? `.${split[1]}` : 'none';
+
+          let group = acc.find(elm => elm.name === extension);
+          if (!group) {
+            group = {
+              name: extension,
+              commit: {
+                ...commit,
+                extendedFiles: [],
+                additions: 0,
+                deletions: 0,
+              },
+            };
+            acc.push(group);
+          }
+          group.commit.extendedFiles.push(extendedFile);
+          group.commit.additions += extendedFile.additions;
+          group.commit.deletions += extendedFile.deletions;
+          return acc;
+        }, []);
       case GroupByType.AUTHOR:
-        return commit.author.name;
+        return [
+          {
+            name: commit.author.name,
+            commit,
+          },
+        ];
       case GroupByType.PROJECT:
       default:
-        return commit.project;
+        return [
+          {
+            name: commit.project,
+            commit,
+          },
+        ];
     }
   };
 }
 
 const aggregate = (commits: ExtendedCommit[], aggregationFn: CommitAggregationFn): number =>
-  commits.reduce((acc, commit: ExtendedCommit) => acc + aggregationFn(commit), 0);
+  commits.reduce((acc, commit: ExtendedCommit) => {
+    return acc + aggregationFn(commit);
+  }, 0);
 
 /**
  * Applies an aggregation function on the CommitGroups and sorts them in

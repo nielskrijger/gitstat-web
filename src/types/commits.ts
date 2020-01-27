@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 import { ColoredElement } from './coloredElement';
 import { ExcludeFilter } from './filters';
 import { Commit, CommitFile } from './gitStatData';
@@ -25,7 +26,9 @@ export type CommitAggregationFn = (commit: ExtendedCommit) => number;
 export type CommitFilterFn = (commit: ExtendedCommit) => boolean;
 
 export interface CommitGroup {
-  group: string;
+  name: string;
+  firstCommit: DateTime;
+  lastCommit: DateTime;
   commits: ExtendedCommit[];
 }
 

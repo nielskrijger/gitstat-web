@@ -8,6 +8,7 @@ import { SelectOptionType } from '../../types/select';
 const options = [
   { label: 'by author', value: GroupByType.AUTHOR },
   { label: 'by project', value: GroupByType.PROJECT },
+  { label: 'by filetype', value: GroupByType.FILETYPE },
 ];
 
 interface SelectGroupByProps {

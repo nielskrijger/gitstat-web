@@ -3,6 +3,7 @@ import React, { FC, ReactElement, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import LineChart from '../../components/charts/LineChart';
 import PieChart from '../../components/charts/PieChart';
+import ControlsBar from '../../components/ControlsBar';
 import DatePicker from '../../components/form/DatePicker';
 import H1 from '../../components/H1';
 import { AggregationFnType, useAggregationFn } from '../../hooks/useAggregationFn';
@@ -32,20 +33,11 @@ const GridContainer = styled.div`
   margin-top: 0.5rem;
 `;
 
-const ControlContainer = styled.div`
-  display: flex;
-  align-items: center;
-
-  > :not(:first-child) {
-    margin-left: 0.3rem;
-  }
-`;
-
 /**
  * Returns the time unit that is closest to a specified number of periods
  * between a given start & end date without exceeding it.
  */
-const determineInitialTimeunit = (startDate: Date, endDate: Date, maxPeriods = 100): TimeUnit => {
+const determineInitialTimeUnit = (startDate: Date, endDate: Date, maxPeriods = 100): TimeUnit => {
   let i = 0;
   let initialTimeUnit = timeUnitOptions[i].value;
   while (
@@ -75,7 +67,7 @@ const GraphsScreen: FC = (): ReactElement => {
   useEffect(() => {
     if (minDate && startDate === now) {
       setStartDate(minDate);
-      setTimeUnit(determineInitialTimeunit(minDate, endDate));
+      setTimeUnit(determineInitialTimeUnit(minDate, endDate));
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -106,14 +98,14 @@ const GraphsScreen: FC = (): ReactElement => {
   return (
     <>
       <H1>Graphs</H1>
-      <ControlContainer>
+      <ControlsBar>
         <SelectAggregationFn value={aggregateFnName} onChange={setAggregateFnName} />
         <SelectGroupBy value={groupBy} onChange={setGroupBy} />
         <SelectTimeUnit value={timeUnit} onChange={setTimeUnit} />
         <DatePicker value={startDate} onChange={setStartDate} />
         <div style={{ fontSize: '1.3em' }}>/</div>
         <DatePicker value={endDate} onChange={setEndDate} todayButton />
-      </ControlContainer>
+      </ControlsBar>
       <GridContainer>
         <LineChart
           lines={lines}
@@ -124,7 +116,7 @@ const GraphsScreen: FC = (): ReactElement => {
 
         <PieChart slices={slices} style={{ height: '30rem' }} />
 
-        <SummaryTable groups={extendedGroups} others={others} />
+        <SummaryTable groups={extendedGroups} timeUnit={timeUnit} others={others} />
       </GridContainer>
     </>
   );

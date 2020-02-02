@@ -9,6 +9,7 @@ import SubHeader from '../../components/SubHeader';
 import { TH } from '../../components/table/Table';
 import { colors } from '../../styles/colors';
 import { ExtendedCommit } from '../../types/commits';
+import { CommitFile } from '../../types/gitStatData';
 import markdown from '../../utils/markdown';
 
 interface CommitDetailProps {
@@ -32,6 +33,14 @@ function splitRemainder(str: string, separator: string, limit: number): string[]
   }
   return pieces;
 }
+
+const filenameCopy = (file: CommitFile): string => {
+  if (file.renameOf) {
+    const similarity = Math.round(file.similarity!);
+    return `${file.renameOf} => ${file.filepath} (${similarity}% similar)`;
+  }
+  return file.filepath;
+};
 
 const CommitDetails: FC<CommitDetailProps> = ({ commit }): ReactElement => {
   const [title, description] = splitRemainder(commit.message, '\n', 1);
@@ -62,8 +71,8 @@ const CommitDetails: FC<CommitDetailProps> = ({ commit }): ReactElement => {
           {commit.extendedFiles.map(
             (file): ReactElement => (
               <tr key={file.filepath}>
-                <td style={{ color: file.excluded ? colors.textDisabled : colors.text }}>
-                  <code>{file.filepath}</code>
+                <td style={{ color: commit.excluded ? colors.textDisabled : colors.text }}>
+                  <code>{filenameCopy(file)}</code>
                 </td>
                 <td style={{ textAlign: 'right' }}>
                   <Addition excluded={file.excluded}>{file.additions}</Addition>

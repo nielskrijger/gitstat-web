@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 import { useMemo } from 'react';
 import { findRealName } from '../selectors/authors';
-import { extendedFiles, totalCommitMutations } from '../selectors/files';
+import { calculateTotalMutations, getExtendedFiles } from '../selectors/files';
 import { useConfig } from '../stores/config/ConfigProvider';
 import { useGitData } from '../stores/data/GitDataProvider';
 import { ExtendedCommit } from '../types/commits';
@@ -20,24 +20,22 @@ export function useExtendedCommits(): ExtendedCommit[] {
     if (data) {
       data.projects.forEach((project: Project): void => {
         project.commits.forEach((commit: Commit): void => {
-          if (!config.includeMergeCommits && commit.isMerge) {
-            return;
-          }
           const author = findRealName(commit.author, config);
           if (config.excludeAuthors && config.excludeAuthors.includes(author.name)) {
             return;
           }
 
-          const exFiles = extendedFiles(commit, config);
-          const totalMutations = totalCommitMutations(exFiles);
+          const excluded = !config.includeMergeCommits && commit.isMerge;
+          const extendedFiles = getExtendedFiles(commit, excluded, config);
+          const commitMutations = calculateTotalMutations(extendedFiles, excluded);
           extendedCommits.push({
             ...commit,
             project: project.name,
             author,
             committer: findRealName(commit.committer, config),
-            extendedFiles: exFiles,
-            ...totalMutations,
-            excluded: totalMutations.additions === 0 && totalMutations.deletions === 0,
+            extendedFiles: extendedFiles,
+            ...commitMutations,
+            excluded: commitMutations.deletions === 0 && commitMutations.additions === 0,
           });
         });
       });

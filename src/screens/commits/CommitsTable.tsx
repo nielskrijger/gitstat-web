@@ -55,42 +55,47 @@ const CommitsTable: FC<CommitsTableProps> = ({ data, onClickRow, expandedRows })
     </thead>
     <tbody>
       {data.map(
-        (commit): ReactElement => (
-          <Fragment key={commit.hash}>
-            {!expandedRows.includes(commit.hash) && (
-              <TR onClick={(): void => onClickRow(commit.hash)}>
-                <td style={{ color: colors.textSecondary, ...noWrapStyle }} title={commit.project}>
-                  {commit.project}
-                </td>
-                <td
-                  style={{ color: colors.textSecondary, ...noWrapStyle }}
-                  title={commit.committer.time}
-                >
-                  <ShortDateTime time={commit.committer.time} />
-                </td>
-                <td style={noWrapStyle}>
-                  {commit.isMerge && <MergeIcon />} {commit.message}
-                </td>
-                <td style={{ color: colors.textSecondary }}>
-                  <Author signature={commit.author} />
-                </td>
-                <td style={{ textAlign: 'right' }}>
-                  <Addition excluded={commit.excluded}>{commit.additions}</Addition>
-                </td>
-                <td style={{ textAlign: 'right' }}>
-                  <Deletion excluded={commit.excluded}>{commit.deletions}</Deletion>
-                </td>
-              </TR>
-            )}
-            {expandedRows.includes(commit.hash) && (
-              <TRDetails onClick={(): void => onClickRow(commit.hash)}>
-                <td colSpan={6}>
-                  <CommitDetails commit={commit} />
-                </td>
-              </TRDetails>
-            )}
-          </Fragment>
-        ),
+        (commit): ReactElement => {
+          const color = commit.excluded ? colors.textDisabled : colors.textSecondary;
+          return (
+            <Fragment key={commit.hash}>
+              {!expandedRows.includes(commit.hash) && (
+                <TR onClick={(): void => onClickRow(commit.hash)}>
+                  <td style={{ color, ...noWrapStyle }} title={commit.project}>
+                    {commit.project}
+                  </td>
+                  <td style={{ color, ...noWrapStyle }} title={commit.committer.time}>
+                    <ShortDateTime time={commit.committer.time} />
+                  </td>
+                  <td
+                    style={{
+                      color: commit.excluded ? colors.textDisabled : colors.text,
+                      ...noWrapStyle,
+                    }}
+                  >
+                    {commit.isMerge && <MergeIcon />} {commit.message}
+                  </td>
+                  <td style={{ color }}>
+                    <Author signature={commit.author} />
+                  </td>
+                  <td style={{ textAlign: 'right' }}>
+                    <Addition excluded={commit.excluded}>{commit.additions}</Addition>
+                  </td>
+                  <td style={{ textAlign: 'right' }}>
+                    <Deletion excluded={commit.excluded}>{commit.deletions}</Deletion>
+                  </td>
+                </TR>
+              )}
+              {expandedRows.includes(commit.hash) && (
+                <TRDetails onClick={(): void => onClickRow(commit.hash)}>
+                  <td colSpan={6}>
+                    <CommitDetails commit={commit} />
+                  </td>
+                </TRDetails>
+              )}
+            </Fragment>
+          );
+        },
       )}
     </tbody>
   </Table>

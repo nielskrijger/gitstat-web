@@ -3,11 +3,16 @@ import { CommitMutations, ExtendedCommitFile } from '../types/commits';
 import { Commit } from '../types/gitStatData';
 
 /**
- * Sets the `excluded`-value on commit files based on a given configuration.
+ * Sets the `excluded`-value on commit files based on a given configuration
+ * and filters out any files that are renamed.
  *
  * Exclusion file filters override inclusion file filters.
  */
-export const extendedFiles = (commit: Commit, config: Config): ExtendedCommitFile[] => {
+export const getExtendedFiles = (
+  commit: Commit,
+  commitExcluded: boolean,
+  config: Config,
+): ExtendedCommitFile[] => {
   const includeFileFilters = config.includeFileFilters
     .filter(value => !!value)
     .map(value => new RegExp(value));
@@ -15,22 +20,34 @@ export const extendedFiles = (commit: Commit, config: Config): ExtendedCommitFil
     .filter(value => !!value)
     .map(value => new RegExp(value));
 
-  return commit.files.map(
-    (file): ExtendedCommitFile => {
-      let excluded = excludeFileFilters.some((excludeFilter): boolean =>
-        excludeFilter.test(file.filepath),
-      );
-      if (!excluded) {
-        excluded = !includeFileFilters.some((includeFilter): boolean =>
-          includeFilter.test(file.filepath),
-        );
-      }
-      return {
-        ...file,
-        excluded,
-      };
-    },
-  );
+  return commit.files
+    .filter(file => typeof file.renameTo === 'undefined') // Rename origin files can be ignored completely
+    .map(
+      (file): ExtendedCommitFile => {
+        let excluded = commitExcluded;
+
+        if (!excluded) {
+          excluded = excludeFileFilters.some((excludeFilter): boolean =>
+            excludeFilter.test(file.filepath),
+          );
+        }
+
+        if (!excluded) {
+          excluded = !includeFileFilters.some((includeFilter): boolean =>
+            includeFilter.test(file.filepath),
+          );
+        }
+
+        if (!excluded) {
+          excluded = file.similarity === 100;
+        }
+
+        return {
+          ...file,
+          excluded,
+        };
+      },
+    );
 };
 
 /**
@@ -38,16 +55,19 @@ export const extendedFiles = (commit: Commit, config: Config): ExtendedCommitFil
  *
  * Should be run after applying any inclusion/exclusion file filters.
  */
-export const totalCommitMutations = (files: ExtendedCommitFile[]): CommitMutations => {
+export const calculateTotalMutations = (
+  files: ExtendedCommitFile[],
+  commitExcluded: boolean,
+): CommitMutations => {
   return files.reduce(
     (acc, file: ExtendedCommitFile): CommitMutations => {
       if (!file.isBinary) {
-        if (!file.excluded) {
+        if (!file.excluded && !commitExcluded) {
           acc.additions += file.additions;
           acc.deletions += file.deletions;
         }
-        acc.rawAdditions += file.additions;
-        acc.rawDeletions += file.deletions;
+        acc.rawAdditions += file.rawAdditions;
+        acc.rawDeletions += file.rawDeletions;
       }
       return acc;
     },

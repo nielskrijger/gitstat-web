@@ -4,14 +4,16 @@ export interface Signature {
   time: string;
 }
 
-export interface Mutations {
-  additions: number;
-  deletions: number;
-}
-
-export interface CommitFile extends Mutations {
+export interface CommitFile {
   filepath: string;
   isBinary: boolean;
+  additions: number;
+  deletions: number;
+  rawAdditions: number;
+  rawDeletions: number;
+  renameOf?: string;
+  renameTo?: string;
+  similarity?: number;
 }
 
 export interface Commit {

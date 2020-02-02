@@ -6,6 +6,7 @@ import PageLayout from '../../layouts/PageLayout';
 import { colors } from '../../styles/colors';
 import UploadDragAndDrop from '../upload/UploadDragAndDrop';
 import UploadInstructions from '../upload/UploadInstructions';
+import EdgeWarning from './EdgeWarning';
 import SelectSampleProject from './SelectSampleProject';
 
 const Disclaimer = styled.p`
@@ -16,6 +17,8 @@ const Disclaimer = styled.p`
 
 const HomeScreen: FC = (): ReactElement => (
   <PageLayout>
+    <EdgeWarning />
+
     <H1>Git stats & graphs</H1>
     <p>Visualize your project&apos;s git history.</p>
 

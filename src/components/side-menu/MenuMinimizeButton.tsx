@@ -6,12 +6,12 @@ import { transitionDelay } from '../../styles/styles';
 import IconLink from '../buttons/IconLink';
 import Icon from '../icons/Icon';
 
-interface MenuMinimizeButtonProps {
+interface Props {
   readonly flip: boolean;
   readonly onClick: () => void;
 }
 
-const ButtonContainer = styled(IconLink)<MenuMinimizeButtonProps>`
+const ButtonContainer = styled(IconLink)<Props>`
   position: absolute;
   top: 1.8rem;
   right: -0.9rem;
@@ -30,7 +30,7 @@ const ButtonContainer = styled(IconLink)<MenuMinimizeButtonProps>`
   }
 `;
 
-const MenuMinimizeButton: FC<MenuMinimizeButtonProps> = (props): ReactElement => (
+const MenuMinimizeButton: FC<Props> = (props): ReactElement => (
   <ButtonContainer {...props}>
     <Icon style={{ width: '0.9rem', height: '0.9rem' }}>
       <LeftArrowIcon />

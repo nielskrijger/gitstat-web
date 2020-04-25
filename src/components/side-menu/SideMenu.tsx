@@ -8,30 +8,11 @@ import HomeIcon from '../../../assets/icons/home.svg';
 import UploadIcon from '../../../assets/icons/upload.svg';
 import { usePrevious } from '../../hooks/usePrevious';
 import { useWindowSize } from '../../hooks/useWindowSize';
-import { colors } from '../../styles/colors';
 import { mediaQuerySizes } from '../../styles/styles';
 import Logo from '../Logo';
+import MenuContainer, { MenuModes } from './MenuContainer';
 import MenuItem from './MenuItem';
 import MenuMinimizeButton from './MenuMinimizeButton';
-
-export enum MenuModes {
-  COLLAPSED = 'collapsed', // TODO not implemented, add this for mobile
-  ICONS = 'icons',
-  EXPANDED = 'expanded',
-}
-
-interface MenuContainerProps {
-  readonly mode: MenuModes;
-}
-
-const MenuContainer = styled.div<MenuContainerProps>`
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid ${colors.border};
-  padding: 0 1rem;
-  position: relative;
-  width: ${({ mode }): string => (mode === MenuModes.EXPANDED ? '11rem' : 'auto')};
-`;
 
 const LogoContainer = styled.div`
   margin: 1.3rem 0.3rem 0 0.3rem;

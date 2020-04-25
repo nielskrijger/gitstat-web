@@ -2,7 +2,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { colors } from '../../styles/colors';
 import { borderRadius } from '../../styles/styles';
 
-interface InputProps {
+interface Props {
   readonly hasError?: boolean;
   readonly isValid?: boolean;
 }
@@ -30,7 +30,7 @@ const StyledInput = styled.input`
   min-height: 38px;
   padding: 0 0.75rem;
   border: 1px solid
-    ${({ hasError, isValid }: InputProps): string => determineBorderColor(hasError, isValid)};
+    ${({ hasError, isValid }: Props): string => determineBorderColor(hasError, isValid)};
   border-radius: ${borderRadius};
   color: ${colors.text};
   background-color: ${colors.inputBackground};
@@ -54,7 +54,7 @@ const StyledInput = styled.input`
     }
   }
 
-  ${({ isValid }: InputProps): FlattenSimpleInterpolation | undefined =>
+  ${({ isValid }: Props): FlattenSimpleInterpolation | undefined =>
     isValid ? validIcon : undefined}
 `;
 

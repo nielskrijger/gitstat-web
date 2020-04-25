@@ -3,13 +3,13 @@ import React, { FC, ReactElement } from 'react';
 import { AggregatedCommitGroup } from '../../types/commits';
 import { formatNumber } from '../../utils/number';
 
-interface SummaryTableProps {
+interface Props {
   groups: AggregatedCommitGroup[];
   timeUnit: TimeUnit;
   others: string[];
 }
 
-const SummaryTable: FC<SummaryTableProps> = ({ groups, timeUnit, others }): ReactElement => (
+const SummaryTable: FC<Props> = ({ groups, timeUnit, others }): ReactElement => (
   <table>
     <thead>
       <tr>
@@ -19,7 +19,7 @@ const SummaryTable: FC<SummaryTableProps> = ({ groups, timeUnit, others }): Reac
       </tr>
     </thead>
     <tbody>
-      {groups.map(group => (
+      {groups.map((group) => (
         <tr key={group.name}>
           <td>
             {group.name}

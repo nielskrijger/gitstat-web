@@ -5,11 +5,6 @@ import IconLink from '../../components/buttons/IconLink';
 import { colors } from '../../styles/colors';
 import { borderRadius } from '../../styles/styles';
 
-interface CollapseAllButtonProps {
-  readonly onClick: () => void;
-  readonly style?: CSSProperties;
-}
-
 const Icon = styled(IconLink)`
   width: 1.8rem;
   height: 1.8rem;
@@ -30,7 +25,12 @@ const Icon = styled(IconLink)`
   }
 `;
 
-const CollapseAllButton: FC<CollapseAllButtonProps> = ({ onClick, style }): ReactElement => (
+interface Props {
+  readonly onClick: () => void;
+  readonly style?: CSSProperties;
+}
+
+const CollapseAllButton: FC<Props> = ({ onClick, style }): ReactElement => (
   <Icon onClick={onClick} style={style} title="Collapse all">
     <CollapseIcon />
   </Icon>

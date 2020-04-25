@@ -13,7 +13,7 @@ const COLORS = [
   '#01FF70',
   '#85144b',
   '#F012BE',
-];
+] as const;
 const DARKEN_BACKGROUND = 0.8;
 
 /**
@@ -24,7 +24,7 @@ const DARKEN_BACKGROUND = 0.8;
  */
 export const colorize = <T>(dataSets: T[]): (ColoredElement & T)[] => {
   let colorIndex = 0;
-  return dataSets.map(dataSet => {
+  return dataSets.map((dataSet) => {
     const color = COLORS[colorIndex % COLORS.length];
     colorIndex += 1;
     return {

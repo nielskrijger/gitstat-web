@@ -59,7 +59,7 @@ const PaginationContainer = styled.div`
   display: inline-block;
 `;
 
-interface PaginationProps {
+interface Props {
   readonly currentPage: number;
   readonly itemCount: number;
   readonly itemsPerPage: number;
@@ -67,19 +67,19 @@ interface PaginationProps {
   readonly style?: CSSProperties;
 }
 
-const Pagination: FC<PaginationProps> = ({
+const Pagination: FC<Props> = ({
   currentPage,
   itemCount,
   itemsPerPage,
   onPageChange,
   style,
 }): ReactElement | null => {
-  const [pageCount, setPageCount] = useState();
+  const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
     setPageCount(Math.ceil(itemCount / itemsPerPage));
   }, [itemCount, itemsPerPage]);
 
-  if (pageCount === 1) {
+  if (pageCount <= 1) {
     return null;
   }
 

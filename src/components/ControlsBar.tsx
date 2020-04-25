@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ControlsBar = styled.div`
+export default styled.div`
   display: flex;
   align-items: center;
 
@@ -8,5 +8,3 @@ const ControlsBar = styled.div`
     margin-left: 0.3rem;
   }
 `;
-
-export default ControlsBar;

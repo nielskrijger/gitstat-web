@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 import { colors } from '../styles/colors';
 
-interface DeletionProps {
+interface Props {
   readonly excluded?: boolean;
 }
 
-const Deletion = styled.div`
-  color: ${({ excluded = false }: DeletionProps): string =>
+export default styled.div`
+  color: ${({ excluded = false }: Props): string =>
     excluded ? colors.textDisabled : colors.error};
 `;
-
-export default Deletion;

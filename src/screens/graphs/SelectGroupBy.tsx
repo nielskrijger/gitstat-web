@@ -11,7 +11,7 @@ const options = [
   { label: 'by filetype', value: GroupByType.FILETYPE },
 ];
 
-interface SelectGroupByProps {
+interface Props {
   value?: GroupByType;
   onChange: (value: GroupByType) => void;
 }
@@ -20,14 +20,11 @@ const SelectContainer = styled.div`
   width: 140px;
 `;
 
-const SelectGroupBy: FC<SelectGroupByProps> = ({
-  value = GroupByType.AUTHOR,
-  onChange,
-}): ReactElement => (
+const SelectGroupBy: FC<Props> = ({ value = GroupByType.AUTHOR, onChange }): ReactElement => (
   <SelectContainer>
     <Select
       name="select-group-by"
-      defaultValue={options.find(opt => opt.value === value)}
+      defaultValue={options.find((opt) => opt.value === value)}
       options={options}
       onChange={(selected: ValueType<SelectOptionType>): void => {
         onChange((selected as SelectOptionType).value as GroupByType);

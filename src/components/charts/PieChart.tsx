@@ -11,12 +11,12 @@ export interface Slice {
   backgroundColor: string;
 }
 
-interface PieChartProps {
+interface Props {
   readonly slices: Slice[];
   readonly style?: CSSProperties;
 }
 
-const PieChart: FC<PieChartProps> = ({ slices, style }): ReactElement => {
+const PieChart: FC<Props> = ({ slices, style }): ReactElement => {
   const ref = useRef<HTMLCanvasElement>(null);
   const [chart, setChart] = useState<Chart | null>(null);
   const [sortedSlices, setSortedSlices] = useState<Slice[]>([]);
@@ -37,8 +37,8 @@ const PieChart: FC<PieChartProps> = ({ slices, style }): ReactElement => {
 
       // Don't try to cleanup this Chart.js configuration, it's easier to understand
       // as one big object that matches the documentation.
-      const backgroundColors = sortedSlices.map(slice => slice.backgroundColor);
-      const borderColors = sortedSlices.map(slice => slice.borderColor);
+      const backgroundColors = sortedSlices.map((slice) => slice.backgroundColor);
+      const borderColors = sortedSlices.map((slice) => slice.borderColor);
       const chartConfig = {
         type: 'pie',
         options: {
@@ -81,13 +81,13 @@ const PieChart: FC<PieChartProps> = ({ slices, style }): ReactElement => {
         data: {
           datasets: [
             {
-              data: sortedSlices.map(slice => slice.value),
+              data: sortedSlices.map((slice) => slice.value),
               backgroundColor: backgroundColors,
               borderColor: borderColors,
               borderWidth: 2,
             },
           ],
-          labels: sortedSlices.map(slice => slice.label),
+          labels: sortedSlices.map((slice) => slice.label),
         },
       };
       setChart(new Chart(ref.current, chartConfig));

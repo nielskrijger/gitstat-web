@@ -3,11 +3,11 @@ import { FieldRenderProps } from 'react-final-form';
 import InputError from './InputError';
 import StyledInput from './StyledInput';
 
-interface InputProps {
+interface Props {
   readonly showValid?: boolean;
 }
 
-const Input: FC<InputProps & FieldRenderProps<HTMLInputElement, HTMLInputElement>> = ({
+const Input: FC<Props & FieldRenderProps<HTMLInputElement, HTMLInputElement>> = ({
   showValid,
   input,
   meta,

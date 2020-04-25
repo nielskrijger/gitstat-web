@@ -12,10 +12,6 @@ import { ExtendedCommit } from '../../types/commits';
 import { CommitFile } from '../../types/gitStatData';
 import markdown from '../../utils/markdown';
 
-interface CommitDetailProps {
-  commit: ExtendedCommit;
-}
-
 const Container = styled.div`
   padding: 1rem;
   white-space: normal;
@@ -42,7 +38,11 @@ const filenameCopy = (file: CommitFile): string => {
   return file.filepath;
 };
 
-const CommitDetails: FC<CommitDetailProps> = ({ commit }): ReactElement => {
+interface Props {
+  commit: ExtendedCommit;
+}
+
+const CommitDetails: FC<Props> = ({ commit }): ReactElement => {
   const [title, description] = splitRemainder(commit.message, '\n', 1);
 
   return (

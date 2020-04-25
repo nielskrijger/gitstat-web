@@ -17,11 +17,9 @@ const dots = keyframes`
   }
 `;
 
-const LoadingDots = styled.span`
+export default styled.span`
   :after {
     content: '.';
     animation: ${dots} 1s steps(5, end) infinite;
   }
 `;
-
-export default LoadingDots;

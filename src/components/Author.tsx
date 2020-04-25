@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import styled from 'styled-components';
 import { Signature } from '../types/gitStatData';
 
-interface SignatureProps {
+interface Props {
   readonly signature: Signature;
 }
 
@@ -12,7 +12,7 @@ const Name = styled.div`
   text-overflow: ellipsis;
 `;
 
-const Author: FC<SignatureProps> = ({ signature }): ReactElement => (
+const Author: FC<Props> = ({ signature }): ReactElement => (
   <Name title={`${signature.name} <${signature.email}>`}>{signature.name}</Name>
 );
 

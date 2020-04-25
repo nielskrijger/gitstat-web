@@ -5,9 +5,7 @@ interface Attrs {
   readonly excluded?: boolean;
 }
 
-const Addition = styled.div`
+export default styled.div`
   color: ${({ excluded = false }: Attrs): string =>
     excluded ? colors.textDisabled : colors.success};
 `;
-
-export default Addition;

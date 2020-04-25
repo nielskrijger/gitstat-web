@@ -101,7 +101,7 @@ const customStyles = {
   }),
 };
 
-interface SelectAll extends Props {
+interface SelectProps extends Props {
   readonly selectAll?: boolean;
 }
 
@@ -111,7 +111,7 @@ const Select = ({
   value,
   onChange,
   ...props
-}: SelectAll): ReactElement => {
+}: SelectProps): ReactElement => {
   const opts = options as OptionsType<SelectOptionType>;
   let allOpts = options;
 

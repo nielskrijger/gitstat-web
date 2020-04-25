@@ -25,19 +25,19 @@ const TRDetails = styled(TR)`
   }
 `;
 
-interface CommitsTableProps {
-  readonly data: ExtendedCommit[];
-  readonly expandedRows: string[];
-  readonly onClickRow: (id: string) => void;
-}
-
 const noWrapStyle = {
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 } as CSSProperties;
 
-const CommitsTable: FC<CommitsTableProps> = ({ data, onClickRow, expandedRows }): ReactElement => (
+interface Props {
+  readonly data: ExtendedCommit[];
+  readonly expandedRows: string[];
+  readonly onClickRow: (id: string) => void;
+}
+
+const CommitsTable: FC<Props> = ({ data, onClickRow, expandedRows }): ReactElement => (
   <Table>
     <thead>
       <tr>

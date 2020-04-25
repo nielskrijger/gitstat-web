@@ -68,7 +68,7 @@ function filterCommits(
   commits: ExtendedCommit[],
   ...filterFns: CommitFilterFn[]
 ): ExtendedCommit[] {
-  return commits.filter(commit => filterFns.every(filterFn => filterFn(commit)));
+  return commits.filter((commit) => filterFns.every((filterFn) => filterFn(commit)));
 }
 
 /**
@@ -102,7 +102,7 @@ export const groupCommits = (commits: ExtendedCommit[], groupBy: GroupByType): C
   if (commits) {
     commits.forEach((originalCommit: ExtendedCommit): void => {
       groupFn(originalCommit).forEach(({ name, commit }) => {
-        let group = groups.find(elm => elm.name === name);
+        let group = groups.find((elm) => elm.name === name);
 
         // If name doesn't exist add a new one
         if (!group) {
@@ -152,7 +152,7 @@ function groupByFunction(groupBy: GroupByType) {
           const split = extensionRegex.exec(extendedFile.filepath);
           const extension = split && split[1] ? `.${split[1]}` : 'none';
 
-          let group = acc.find(elm => elm.name === extension);
+          let group = acc.find((elm) => elm.name === extension);
           if (!group) {
             group = {
               name: extension,
@@ -203,7 +203,7 @@ export const aggregateCommits = (
   aggregationFn: CommitAggregationFn,
   periods: number,
 ): AggregatedCommitGroup[] => {
-  const result = groups.map(group => ({
+  const result = groups.map((group) => ({
     ...group,
     aggregate: aggregate(group.commits, aggregationFn),
     average: aggregate(group.commits, aggregationFn) / periods,

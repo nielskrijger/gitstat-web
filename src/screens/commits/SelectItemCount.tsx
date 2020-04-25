@@ -19,13 +19,13 @@ const SelectItemContainer = styled.div`
   margin-left: 0.3rem;
 `;
 
-interface SelectItemCountProps {
+interface Props {
   readonly onChange: (value: number) => void;
   readonly value: number;
   readonly style?: CSSProperties;
 }
 
-const SelectItemCount: FC<SelectItemCountProps> = ({ onChange, value, style }): ReactElement => (
+const SelectItemCount: FC<Props> = ({ onChange, value, style }): ReactElement => (
   <SelectItemContainer style={style}>
     <Select
       name="color"

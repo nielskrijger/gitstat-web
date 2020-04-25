@@ -9,14 +9,17 @@ const SelectContainer = styled.div`
   align-self: flex-start;
 `;
 
-interface SelectRealNameProps {
+interface Props {
   options: string[];
   value?: string;
   onChange: (value: string) => void;
 }
 
-const SelectRealName: FC<SelectRealNameProps> = ({ options, value, onChange }): ReactElement => {
-  const nameOptions = useMemo(() => options.map(name => ({ label: name, value: name })), [options]);
+const SelectRealName: FC<Props> = ({ options, value, onChange }): ReactElement => {
+  const nameOptions = useMemo(() => options.map((name) => ({ label: name, value: name })), [
+    options,
+  ]);
+
   return (
     <SelectContainer>
       <Select

@@ -7,7 +7,7 @@ const StyledError = styled.div`
   padding-bottom: 1rem;
 `;
 
-interface FormErrorProps {
+interface Props {
   readonly error?: string;
   readonly show?: boolean;
 }
@@ -18,7 +18,7 @@ interface FormErrorProps {
  * This component should only be used to show unexpected backend errors.
  * All other form error are field-bound.
  */
-const FormError: FC<FormErrorProps> = ({ error, show = true }): ReactElement | null => {
+const FormError: FC<Props> = ({ error, show = true }): ReactElement | null => {
   if (error === undefined || !show) {
     return null;
   }

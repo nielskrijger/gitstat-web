@@ -12,23 +12,20 @@ const options = [
   { label: 'Deletions ↓', value: OrderByType.DELETIONS },
 ];
 
-interface SelectSortByProps {
-  value?: OrderByType;
-  onChange: (value: OrderByType) => void;
-}
-
 const SelectContainer = styled.div`
   width: 220px;
 `;
 
-const SelectOrderBy: FC<SelectSortByProps> = ({
-  value = OrderByType.TIME,
-  onChange,
-}): ReactElement => (
+interface Props {
+  value?: OrderByType;
+  onChange: (value: OrderByType) => void;
+}
+
+const SelectOrderBy: FC<Props> = ({ value = OrderByType.TIME, onChange }): ReactElement => (
   <SelectContainer>
     <Select
       name="select-order-by"
-      defaultValue={options.find(opt => opt.value === value)}
+      defaultValue={options.find((opt) => opt.value === value)}
       options={options}
       onChange={(selectedValue: ValueType<SelectOptionType>): void => {
         onChange((selectedValue as SelectOptionType).value as OrderByType);

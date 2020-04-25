@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-const NoWrap = styled.span`
+export default styled.span`
   white-space: nowrap;
 `;
-
-export default NoWrap;

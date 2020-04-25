@@ -80,7 +80,7 @@ const DatePickerStyle = createGlobalStyle`
   }
 `;
 
-interface DatePickerProps {
+interface Props {
   onChange: (value: Date) => void;
   style?: CSSProperties;
   value?: Date;
@@ -91,12 +91,7 @@ const DatePickerContainer = styled.div`
   width: 100px;
 `;
 
-const DatePicker: FC<DatePickerProps> = ({
-  style,
-  value,
-  onChange,
-  todayButton = false,
-}): ReactElement => (
+const DatePicker: FC<Props> = ({ style, value, onChange, todayButton = false }): ReactElement => (
   <DatePickerContainer style={style}>
     <DatePickerStyle />
     <ReactDatePicker

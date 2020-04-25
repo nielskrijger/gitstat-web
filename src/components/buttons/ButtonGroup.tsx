@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ButtonGroup = styled.div`
+export default styled.div`
   display: flex;
   align-items: center;
 
@@ -8,5 +8,3 @@ const ButtonGroup = styled.div`
     padding-left: 1em;
   }
 `;
-
-export default ButtonGroup;

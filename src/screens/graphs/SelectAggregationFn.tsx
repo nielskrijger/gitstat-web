@@ -13,23 +13,23 @@ const options = [
   { label: 'Lines deleted', value: AggregationFnType.DELETIONS },
 ];
 
-interface SelectAggregationFnProps {
-  value?: AggregationFnType;
-  onChange: (aggregateFnName: AggregationFnType) => void;
-}
-
 const SelectContainer = styled.div`
   width: 200px;
 `;
 
-const SelectAggregationFn: FC<SelectAggregationFnProps> = ({
+interface Props {
+  value?: AggregationFnType;
+  onChange: (aggregateFnName: AggregationFnType) => void;
+}
+
+const SelectAggregationFn: FC<Props> = ({
   onChange,
   value = AggregationFnType.COMMITS,
 }): ReactElement => (
   <SelectContainer>
     <Select
       name="select-aggregation"
-      defaultValue={options.find(opt => opt.value === value)}
+      defaultValue={options.find((opt) => opt.value === value)}
       options={options}
       onChange={(selected: ValueType<SelectOptionType>): void => {
         onChange((selected as SelectOptionType).value as AggregationFnType);

@@ -22,7 +22,7 @@ export interface LineData {
 
 export type Line = ColoredElement & LineData;
 
-interface LineChartProps {
+interface Props {
   readonly lines: Line[];
   readonly timeUnit: TimeUnit;
   readonly stacked: boolean;
@@ -36,12 +36,7 @@ const HIDE_LEGEND_LINE_THRESHOLD = 20;
 // there are more than X lines.
 const HIDE_EMPTY_TOOLTIP_LINE_THRESHOLD = 10;
 
-const LineChart: FC<LineChartProps> = ({
-  lines,
-  style,
-  timeUnit,
-  stacked = true,
-}): ReactElement => {
+const LineChart: FC<Props> = ({ lines, style, timeUnit, stacked = true }): ReactElement => {
   const ref = useRef<HTMLCanvasElement>(null);
   const [chart, setChart] = useState<Chart | null>(null);
 

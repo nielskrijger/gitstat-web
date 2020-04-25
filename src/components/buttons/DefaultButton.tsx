@@ -4,7 +4,7 @@ import { colors } from '../../styles/colors';
 import { borderRadius } from '../../styles/styles';
 import LoadingDots from '../LoadingDots';
 
-interface ButtonProps {
+interface Props {
   readonly isLoading?: boolean;
   readonly disabled?: boolean;
 }
@@ -24,7 +24,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const DefaultButton: FC<ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>> = ({
+const DefaultButton: FC<Props & ButtonHTMLAttributes<HTMLButtonElement>> = ({
   children,
   disabled,
   isLoading = false,

@@ -1,10 +1,10 @@
 import React, { FC, Fragment, ReactElement } from 'react';
 
-interface NL2BRProps {
+interface Props {
   readonly text: string;
 }
 
-const NL2BR: FC<NL2BRProps> = ({ text }): ReactElement => (
+const NL2BR: FC<Props> = ({ text }): ReactElement => (
   <>
     {text.split('\n').map(
       (item, key): ReactElement => (

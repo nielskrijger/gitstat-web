@@ -19,16 +19,16 @@ export const timeUnitOptions: SelectTimeUnitOption[] = [
 
 const defaultOption = timeUnitOptions[2];
 
-interface SelectPeriodProps {
-  value?: TimeUnit;
-  onChange: (value: TimeUnit) => void;
-}
-
 const SelectContainer = styled.div`
   width: 130px;
 `;
 
-const SelectTimeUnit: FC<SelectPeriodProps> = ({ value = 'month', onChange }): ReactElement => {
+interface Props {
+  value?: TimeUnit;
+  onChange: (value: TimeUnit) => void;
+}
+
+const SelectTimeUnit: FC<Props> = ({ value = 'month', onChange }): ReactElement => {
   useEffect(() => {
     onChange(defaultOption.value);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -37,7 +37,7 @@ const SelectTimeUnit: FC<SelectPeriodProps> = ({ value = 'month', onChange }): R
     <SelectContainer>
       <Select
         name="select-time-unit"
-        value={timeUnitOptions.find(opt => opt.value === value)}
+        value={timeUnitOptions.find((opt) => opt.value === value)}
         options={timeUnitOptions}
         onChange={(selected: ValueType<SelectOptionType>): void => {
           onChange((selected as SelectOptionType).value as TimeUnit);

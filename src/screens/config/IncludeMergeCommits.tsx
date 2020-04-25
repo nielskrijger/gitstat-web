@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from 'react';
-import Checkbox from '../../components/form/Checkbox';
+import Checkbox from '../../components/form/checkbox/Checkbox';
 import { updateConfig } from '../../stores/config/configActions';
 import { useConfig } from '../../stores/config/ConfigProvider';
 

@@ -13,6 +13,7 @@ const ConfigContainer = styled.div`
 
 const ConfigTable = styled.table`
   width: 100%;
+  table-layout: fixed;
 `;
 
 const FirstTD = styled.td`

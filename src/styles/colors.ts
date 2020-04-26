@@ -6,6 +6,7 @@ export enum colors {
   textSecondary = '#7F888F',
   textDisabled = '#706a70',
   inputBorder = '#505050',
+  selectHover = '#303030',
   inputBorderHover = '#ABABAB',
   inputBackground = '#000000',
   border = '#505050',

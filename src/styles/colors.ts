@@ -3,7 +3,7 @@ export enum colors {
   backgroundSecondary = '#353535',
   black = '#000000',
   text = '#ffffff',
-  textSecondary = '#7F888F',
+  textSecondary = '#8F989F',
   textDisabled = '#706a70',
   inputBorder = '#606060',
   selectHover = '#303030',

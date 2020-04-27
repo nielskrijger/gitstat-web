@@ -50,7 +50,7 @@ export default (): ReactElement => (
           <FirstTD>Include files</FirstTD>
           <SecondTD>
             <Description>
-              Defines any regex patterns whose filepath should match. Defaults to all files (
+              Regex expression to specify which files are included. Defaults to all files (
               <code>.*</code>).
             </Description>
             <IncludeFilePatterns />
@@ -59,7 +59,9 @@ export default (): ReactElement => (
         <tr>
           <FirstTD>Exclude files</FirstTD>
           <SecondTD>
-            <Description>Exclusion file filters override inclusion filters.</Description>
+            <Description>
+              Regex expressions to exclude files. This overrides &ldquo;Include files&rdquo;.
+            </Description>
             <ExcludeFilePatterns />
           </SecondTD>
         </tr>

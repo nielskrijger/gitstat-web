@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useCallback, useContext, useState } from 'react';
+import React, { ReactElement, useCallback, useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ValueType } from 'react-select';
 import styled from 'styled-components';
@@ -17,7 +17,7 @@ const SelectContainer = styled.div`
   margin-left: 0.3rem;
 `;
 
-const SelectSampleProject: FC = (): ReactElement => {
+export default (): ReactElement => {
   const { dispatch } = useContext(GitDataStore);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>();
@@ -63,5 +63,3 @@ const SelectSampleProject: FC = (): ReactElement => {
     </SelectContainer>
   );
 };
-
-export default SelectSampleProject;

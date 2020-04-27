@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, FC, ReactElement } from 'react';
+import React, { ButtonHTMLAttributes, ReactElement } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 import { borderRadius, transitionDelay } from '../../styles/styles';
@@ -25,18 +25,14 @@ const StyledButton = styled.button`
   }
 `;
 
-const DefaultButton: FC<Props & ButtonHTMLAttributes<HTMLButtonElement>> = ({
+export default ({
   children,
   disabled,
   isLoading = false,
   ...props
-}): ReactElement => {
-  return (
-    <StyledButton disabled={isLoading || disabled} {...props}>
-      {children}
-      {isLoading && <LoadingDots />}
-    </StyledButton>
-  );
-};
-
-export default DefaultButton;
+}: Props & ButtonHTMLAttributes<HTMLButtonElement>): ReactElement => (
+  <StyledButton disabled={isLoading || disabled} {...props}>
+    {children}
+    {isLoading && <LoadingDots />}
+  </StyledButton>
+);

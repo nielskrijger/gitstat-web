@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import H1 from '../../components/H1';
 import Pagination from '../../components/table/Pagination';
@@ -17,7 +17,7 @@ const TableControlContainer = styled.div`
   flex-direction: row;
 `;
 
-const CommitsScreen: FC = (): ReactElement => {
+export default (): ReactElement => {
   const [itemsPerPage, setItemsPerPage] = useStoredState('commits:itemspp', 20);
   const [page, setPage] = useState(0);
   const [orderBy, setOrderBy] = useStoredState<OrderByType>('commits:orderby', OrderByType.TIME);
@@ -66,5 +66,3 @@ const CommitsScreen: FC = (): ReactElement => {
     </>
   );
 };
-
-export default CommitsScreen;

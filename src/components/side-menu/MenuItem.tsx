@@ -1,5 +1,5 @@
 import * as H from 'history';
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 import MenuItemLink from './MenuItemLink';
@@ -26,13 +26,7 @@ const MenuText = styled.span`
   margin-left: 1rem;
 `;
 
-const MenuItem: FC<Props> = ({
-  to,
-  icon,
-  title,
-  exact = false,
-  iconOnly = false,
-}): ReactElement => (
+export default ({ to, icon, title, exact = false, iconOnly = false }: Props): ReactElement => (
   <MenuItemLink
     to={to}
     exact={exact}
@@ -47,5 +41,3 @@ const MenuItem: FC<Props> = ({
     {!iconOnly && <MenuText>{title}</MenuText>}
   </MenuItemLink>
 );
-
-export default MenuItem;

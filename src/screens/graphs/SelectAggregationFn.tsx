@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { ValueType } from 'react-select';
 import styled from 'styled-components';
 import Select from '../../components/form/Select';
@@ -22,10 +22,7 @@ interface Props {
   onChange: (aggregateFnName: AggregationFnType) => void;
 }
 
-const SelectAggregationFn: FC<Props> = ({
-  onChange,
-  value = AggregationFnType.COMMITS,
-}): ReactElement => (
+export default ({ onChange, value = AggregationFnType.COMMITS }: Props): ReactElement => (
   <SelectContainer>
     <Select
       name="select-aggregation"
@@ -37,5 +34,3 @@ const SelectAggregationFn: FC<Props> = ({
     />
   </SelectContainer>
 );
-
-export default SelectAggregationFn;

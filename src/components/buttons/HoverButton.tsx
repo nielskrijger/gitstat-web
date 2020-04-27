@@ -1,5 +1,5 @@
 import { lighten } from 'polished';
-import React, { ButtonHTMLAttributes, FC, ReactElement } from 'react';
+import React, { ButtonHTMLAttributes, ReactElement } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 import { borderRadius } from '../../styles/styles';
@@ -30,16 +30,14 @@ const StyledButton = styled.button`
   }
 `;
 
-const HoverButton: FC<Props & ButtonHTMLAttributes<HTMLButtonElement>> = ({
+export default ({
   children,
   disabled,
   isLoading = false,
   ...props
-}): ReactElement => (
+}: Props & ButtonHTMLAttributes<HTMLButtonElement>): ReactElement => (
   <StyledButton disabled={isLoading || disabled} {...props}>
     {children}
     {isLoading && <LoadingDots />}
   </StyledButton>
 );
-
-export default HoverButton;

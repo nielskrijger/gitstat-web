@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useMemo } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import { ValueType } from 'react-select';
 import styled from 'styled-components';
 import Select from '../../components/form/Select';
@@ -15,7 +15,7 @@ interface Props {
   onChange: (value: string) => void;
 }
 
-const SelectRealName: FC<Props> = ({ options, value, onChange }): ReactElement => {
+export default ({ options, value, onChange }: Props): ReactElement => {
   const nameOptions = useMemo(() => options.map((name) => ({ label: name, value: name })), [
     options,
   ]);
@@ -34,5 +34,3 @@ const SelectRealName: FC<Props> = ({ options, value, onChange }): ReactElement =
     </SelectContainer>
   );
 };
-
-export default SelectRealName;

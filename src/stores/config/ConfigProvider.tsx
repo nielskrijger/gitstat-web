@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, FC, ReactElement, useContext } from 'react';
+import React, { createContext, Dispatch, ReactElement, ReactNode, useContext } from 'react';
 import { usePersistedReducer } from '../../hooks/usePersistedReducer';
 import reducer, { Actions, initialState } from './configReducer';
 import { Config } from './configTypes';
@@ -18,7 +18,11 @@ export const useConfig = (): { config: Config; dispatch: Dispatch<Actions> } => 
   return { config, dispatch };
 };
 
-export const ConfigProvider: FC = ({ children }): ReactElement => {
+interface Props {
+  children: ReactNode;
+}
+
+export default ({ children }: Props): ReactElement => {
   const [state, dispatch] = usePersistedReducer(reducer, initialState, 'config');
 
   const value = { state, dispatch };

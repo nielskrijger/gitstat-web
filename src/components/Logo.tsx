@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import LogoSVG from '../../assets/logo.svg';
 import useRouter from '../hooks/useRouter';
@@ -21,7 +21,7 @@ const StyledLogo = styled.div`
   color: ${colors.text};
 `;
 
-const Logo: FC = (): ReactElement => {
+export default (): ReactElement => {
   const { history } = useRouter();
 
   function gotoHome(): void {
@@ -35,5 +35,3 @@ const Logo: FC = (): ReactElement => {
     </Container>
   );
 };
-
-export default Logo;

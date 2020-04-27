@@ -1,9 +1,10 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 
 interface Props {
   readonly hasError: boolean;
+  readonly children: ReactNode;
 }
 
 const StyledErrorMessage = styled.div<Props>`
@@ -13,9 +14,7 @@ const StyledErrorMessage = styled.div<Props>`
   transition: max-height 1.5s ease-out;
 `;
 
-const InputError: FC<Props> = ({ hasError, children }): ReactElement | null => {
+export default ({ hasError, children }: Props): ReactElement | null => {
   if (!hasError) return null;
   return <StyledErrorMessage hasError={hasError}>{hasError && children}</StyledErrorMessage>;
 };
-
-export default InputError;

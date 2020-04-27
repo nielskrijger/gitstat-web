@@ -1,5 +1,5 @@
 import { TimeUnit } from 'chart.js';
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { AggregatedCommitGroup } from '../../types/commits';
 import { formatNumber } from '../../utils/number';
 
@@ -9,7 +9,7 @@ interface Props {
   others: string[];
 }
 
-const SummaryTable: FC<Props> = ({ groups, timeUnit, others }): ReactElement => (
+export default ({ groups, timeUnit, others }: Props): ReactElement => (
   <table>
     <thead>
       <tr>
@@ -32,5 +32,3 @@ const SummaryTable: FC<Props> = ({ groups, timeUnit, others }): ReactElement => 
     </tbody>
   </table>
 );
-
-export default SummaryTable;

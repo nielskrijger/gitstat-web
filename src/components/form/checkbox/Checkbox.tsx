@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
 import CheckIcon from './CheckIcon';
 import HiddenCheckbox from './HiddenCheckbox';
@@ -16,7 +16,7 @@ interface Props {
   children: ReactNode;
 }
 
-const Checkbox: FC<Props> = ({ checked, onChange, children }) => (
+export default ({ checked, onChange, children }: Props): ReactElement => (
   <CheckboxContainer>
     <HiddenCheckbox checked={checked} onChange={(ev): void => onChange(ev.target.checked)} />
     <StyledCheckbox checked={checked}>
@@ -27,5 +27,3 @@ const Checkbox: FC<Props> = ({ checked, onChange, children }) => (
     {children}
   </CheckboxContainer>
 );
-
-export default Checkbox;

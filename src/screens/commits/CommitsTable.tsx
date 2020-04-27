@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, Fragment, ReactElement } from 'react';
+import React, { CSSProperties, Fragment, ReactElement } from 'react';
 import styled from 'styled-components';
 import Addition from '../../components/Addition';
 import Author from '../../components/Author';
@@ -39,7 +39,7 @@ interface Props {
   readonly onClickRow: (id: string) => void;
 }
 
-const CommitsTable: FC<Props> = ({ data, onClickRow, expandedRows }): ReactElement => (
+export default ({ data, onClickRow, expandedRows }: Props): ReactElement => (
   <Table>
     <thead>
       <tr>
@@ -100,5 +100,3 @@ const CommitsTable: FC<Props> = ({ data, onClickRow, expandedRows }): ReactEleme
     </tbody>
   </Table>
 );
-
-export default CommitsTable;

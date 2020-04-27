@@ -1,5 +1,5 @@
 import { TimeUnit } from 'chart.js';
-import React, { FC, ReactElement, useEffect, useMemo } from 'react';
+import React, { ReactElement, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import LineChart from '../../components/charts/LineChart';
 import PieChart from '../../components/charts/PieChart';
@@ -20,7 +20,7 @@ import {
 } from '../../selectors/commits';
 import { ColoredElement } from '../../types/coloredElement';
 import { AggregatedCommitGroup } from '../../types/commits';
-import { colorize } from '../../utils/colorize';
+import colorize from '../../utils/colorize';
 import { periodCount } from '../../utils/time';
 import SelectAggregationFn from './SelectAggregationFn';
 import SelectGroupBy from './SelectGroupBy';
@@ -51,7 +51,7 @@ const determineInitialTimeUnit = (startDate: Date, endDate: Date, maxPeriods = 1
   return initialTimeUnit;
 };
 
-const GraphsScreen: FC = (): ReactElement => {
+export default (): ReactElement => {
   const now = new Date();
   const [timeUnit, setTimeUnit] = useStoredState<TimeUnit>('graphs:timeunit', 'day');
   const [groupBy, setGroupBy] = useStoredState<GroupByType>('graphs:groupby', GroupByType.AUTHOR);
@@ -126,5 +126,3 @@ const GraphsScreen: FC = (): ReactElement => {
     </>
   );
 };
-
-export default GraphsScreen;

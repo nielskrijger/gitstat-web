@@ -1,5 +1,5 @@
 import { lighten } from 'polished';
-import React, { FC, ReactElement, useCallback, useContext, useState } from 'react';
+import React, { ReactElement, useCallback, useContext, useState } from 'react';
 import { DropzoneRootProps, useDropzone } from 'react-dropzone';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -47,7 +47,7 @@ const Container = styled.div<DropzoneRootProps>`
   }
 `;
 
-const UploadDragAndDrop: FC = (): ReactElement => {
+export default (): ReactElement => {
   const [loading, setLoading] = useState(false);
   const { dispatch } = useContext(GitDataStore);
   const history = useHistory();
@@ -90,5 +90,3 @@ const UploadDragAndDrop: FC = (): ReactElement => {
     </Container>
   );
 };
-
-export default UploadDragAndDrop;

@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 
@@ -12,7 +12,7 @@ const EdgeWarningContainer = styled.div`
   border: 1px solid ${colors.error};
 `;
 
-const EdgeWarning: FC = (): ReactElement | null => {
+export default (): ReactElement | null => {
   if (navigator.userAgent.indexOf('Edge') === -1) {
     return null;
   }
@@ -25,5 +25,3 @@ const EdgeWarning: FC = (): ReactElement | null => {
     </EdgeWarningContainer>
   );
 };
-
-export default EdgeWarning;

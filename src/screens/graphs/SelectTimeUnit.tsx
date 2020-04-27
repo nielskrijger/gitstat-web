@@ -1,5 +1,5 @@
 import { TimeUnit } from 'chart.js';
-import React, { FC, ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { ValueType } from 'react-select';
 import styled from 'styled-components';
 import Select from '../../components/form/Select';
@@ -28,7 +28,7 @@ interface Props {
   onChange: (value: TimeUnit) => void;
 }
 
-const SelectTimeUnit: FC<Props> = ({ value = 'month', onChange }): ReactElement => {
+export default ({ value = 'month', onChange }: Props): ReactElement => {
   useEffect(() => {
     onChange(defaultOption.value);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -46,5 +46,3 @@ const SelectTimeUnit: FC<Props> = ({ value = 'month', onChange }): ReactElement 
     </SelectContainer>
   );
 };
-
-export default SelectTimeUnit;

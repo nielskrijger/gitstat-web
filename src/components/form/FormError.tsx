@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 
@@ -18,11 +18,9 @@ interface Props {
  * This component should only be used to show unexpected backend errors.
  * All other form error are field-bound.
  */
-const FormError: FC<Props> = ({ error, show = true }): ReactElement | null => {
+export default ({ error, show = true }: Props): ReactElement | null => {
   if (error === undefined || !show) {
     return null;
   }
   return <StyledError>{error}</StyledError>;
 };
-
-export default FormError;

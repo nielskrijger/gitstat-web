@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { FieldRenderProps } from 'react-final-form';
 import InputError from './InputError';
 import StyledInput from './StyledInput';
@@ -7,12 +7,12 @@ interface Props {
   readonly showValid?: boolean;
 }
 
-const Input: FC<Props & FieldRenderProps<HTMLInputElement, HTMLInputElement>> = ({
+export default ({
   showValid,
   input,
   meta,
   ...props
-}): ReactElement => {
+}: Props & FieldRenderProps<HTMLInputElement, HTMLInputElement>): ReactElement => {
   const hasError = meta.touched === true && meta.error !== undefined;
   const isValid = showValid && meta.touched && meta.error === undefined && !meta.active;
   return (
@@ -31,5 +31,3 @@ const Input: FC<Props & FieldRenderProps<HTMLInputElement, HTMLInputElement>> = 
     </>
   );
 };
-
-export default Input;

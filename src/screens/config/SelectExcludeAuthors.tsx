@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useMemo } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import { ValueType } from 'react-select';
 import Select from '../../components/form/Select';
 import { useRealAuthorNames } from '../../selectors/authors';
@@ -6,7 +6,7 @@ import { updateConfig } from '../../stores/config/configActions';
 import { useConfig } from '../../stores/config/ConfigProvider';
 import { SelectOptionType } from '../../types/select';
 
-const SelectExcludeAuthors: FC = (): ReactElement => {
+export default (): ReactElement => {
   const authors = useRealAuthorNames();
   const { config, dispatch } = useConfig();
 
@@ -37,5 +37,3 @@ const SelectExcludeAuthors: FC = (): ReactElement => {
     />
   );
 };
-
-export default SelectExcludeAuthors;

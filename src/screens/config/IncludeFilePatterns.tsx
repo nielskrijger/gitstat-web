@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import HoverButton from '../../components/buttons/HoverButton';
 import ClearableInput from '../../components/form/ClearableInput';
@@ -15,7 +15,7 @@ const FormRow = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-const IncludeFilePatterns: FC = (): ReactElement => {
+export default (): ReactElement => {
   const { config, dispatch } = useConfig();
 
   return (
@@ -50,5 +50,3 @@ const IncludeFilePatterns: FC = (): ReactElement => {
     </>
   );
 };
-
-export default IncludeFilePatterns;

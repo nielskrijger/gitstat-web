@@ -1,4 +1,4 @@
-import React, { FC, InputHTMLAttributes, ReactElement } from 'react';
+import React, { InputHTMLAttributes, ReactElement } from 'react';
 import styled from 'styled-components';
 import CrossSVG from '../../../assets/icons/cross.svg';
 import IconLink from '../buttons/IconLink';
@@ -15,11 +15,11 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const ClearableInput: FC<InputProps & InputHTMLAttributes<HTMLInputElement>> = ({
+export default ({
   onClear,
   style,
   ...props
-}): ReactElement => {
+}: InputProps & InputHTMLAttributes<HTMLInputElement>): ReactElement => {
   return (
     <Container style={style}>
       <StyledInput type="text" {...props} />
@@ -29,5 +29,3 @@ const ClearableInput: FC<InputProps & InputHTMLAttributes<HTMLInputElement>> = (
     </Container>
   );
 };
-
-export default ClearableInput;

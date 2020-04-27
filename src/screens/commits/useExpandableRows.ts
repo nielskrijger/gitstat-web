@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-interface Props {
+interface ExpandableRowOptions {
   readonly toggleRowCollapse: (id: string) => void;
   readonly collapseAll: () => void;
   readonly expandedRows: string[];
 }
 
-export default (): Props => {
+export default (): ExpandableRowOptions => {
   const [expandedRows, setExpandedRows] = useState<string[]>([]);
 
   const toggleRowCollapse = (id: string): void => {

@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, ReactElement, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import AboutIcon from '../../../assets/icons/about.svg';
 import ChartIcon from '../../../assets/icons/chart.svg';
@@ -47,7 +47,7 @@ const useMenuMode = (): [MenuModes, Dispatch<SetStateAction<MenuModes>>] => {
   return [mode, setMode];
 };
 
-const SideMenu: FC = (): ReactElement => {
+export default (): ReactElement => {
   const [mode, setMode] = useMenuMode();
 
   const iconOnly = mode === MenuModes.ICONS;
@@ -84,5 +84,3 @@ const SideMenu: FC = (): ReactElement => {
     </MenuContainer>
   );
 };
-
-export default SideMenu;

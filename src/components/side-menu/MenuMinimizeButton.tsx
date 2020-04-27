@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import LeftArrowIcon from '../../../assets/icons/double-arrow-left.svg';
 import { colors } from '../../styles/colors';
@@ -30,12 +30,10 @@ const ButtonContainer = styled(IconLink)<Props>`
   }
 `;
 
-const MenuMinimizeButton: FC<Props> = (props): ReactElement => (
+export default (props: Props): ReactElement => (
   <ButtonContainer {...props}>
     <Icon style={{ width: '0.9rem', height: '0.9rem' }}>
       <LeftArrowIcon />
     </Icon>
   </ButtonContainer>
 );
-
-export default MenuMinimizeButton;

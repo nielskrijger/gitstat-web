@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, ReactElement } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styled, { createGlobalStyle } from 'styled-components';
@@ -91,7 +91,7 @@ const DatePickerContainer = styled.div`
   width: 100px;
 `;
 
-const DatePicker: FC<Props> = ({ style, value, onChange, todayButton = false }): ReactElement => (
+export default ({ style, value, onChange, todayButton = false }: Props): ReactElement => (
   <DatePickerContainer style={style}>
     <DatePickerStyle />
     <ReactDatePicker
@@ -104,5 +104,3 @@ const DatePicker: FC<Props> = ({ style, value, onChange, todayButton = false }):
     />
   </DatePickerContainer>
 );
-
-export default DatePicker;

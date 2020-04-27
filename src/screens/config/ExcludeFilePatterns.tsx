@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import HoverButton from '../../components/buttons/HoverButton';
 import ClearableInput from '../../components/form/ClearableInput';
 import PlusIcon from '../../components/icons/PlusIcon';
@@ -9,7 +9,7 @@ import {
 } from '../../stores/config/configActions';
 import { useConfig } from '../../stores/config/ConfigProvider';
 
-const ExcludeFilePatterns: FC = (): ReactElement => {
+export default (): ReactElement => {
   const { config, dispatch } = useConfig();
 
   return (
@@ -34,5 +34,3 @@ const ExcludeFilePatterns: FC = (): ReactElement => {
     </>
   );
 };
-
-export default ExcludeFilePatterns;

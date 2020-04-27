@@ -1,6 +1,6 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
-const UploadInstructions: FC = (): ReactElement => (
+export default (): ReactElement => (
   <ol>
     <li>
       Generate a JSON file of your git repo(s) using{' '}
@@ -12,5 +12,3 @@ const UploadInstructions: FC = (): ReactElement => (
     <li>Drop the JSON file below.</li>
   </ol>
 );
-
-export default UploadInstructions;

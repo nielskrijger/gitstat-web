@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
 import Logo from '../components/Logo';
 
@@ -17,11 +17,13 @@ const MessageContainer = styled.div`
   margin: 1rem 0;
 `;
 
-const PageLayout: FC = ({ children }): ReactElement => (
+interface Props {
+  children: ReactNode;
+}
+
+export default ({ children }: Props): ReactElement => (
   <Container>
     <Logo />
     <MessageContainer>{children}</MessageContainer>
   </Container>
 );
-
-export default PageLayout;

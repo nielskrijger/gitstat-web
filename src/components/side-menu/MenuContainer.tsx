@@ -11,7 +11,7 @@ interface Props {
   readonly mode: MenuModes;
 }
 
-const MenuContainer = styled.div<Props>`
+export default styled.div<Props>`
   display: flex;
   flex-direction: column;
   border-right: 1px solid ${colors.border};
@@ -19,5 +19,3 @@ const MenuContainer = styled.div<Props>`
   position: relative;
   width: ${({ mode }): string => (mode === MenuModes.EXPANDED ? '11rem' : 'auto')};
 `;
-
-export default MenuContainer;

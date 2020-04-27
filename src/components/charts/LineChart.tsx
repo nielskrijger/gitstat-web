@@ -6,7 +6,7 @@ import Chart, {
 } from 'chart.js';
 import { mix, parseToRgb } from 'polished';
 import { RgbaColor } from 'polished/lib/types/color';
-import React, { CSSProperties, FC, ReactElement, useEffect, useRef, useState } from 'react';
+import React, { CSSProperties, ReactElement, useEffect, useRef, useState } from 'react';
 import { colors } from '../../styles/colors';
 import { ColoredElement } from '../../types/coloredElement';
 
@@ -36,7 +36,7 @@ const HIDE_LEGEND_LINE_THRESHOLD = 20;
 // there are more than X lines.
 const HIDE_EMPTY_TOOLTIP_LINE_THRESHOLD = 10;
 
-const LineChart: FC<Props> = ({ lines, style, timeUnit, stacked = true }): ReactElement => {
+export default ({ lines, style, timeUnit, stacked = true }: Props): ReactElement => {
   const ref = useRef<HTMLCanvasElement>(null);
   const [chart, setChart] = useState<Chart | null>(null);
 
@@ -149,5 +149,3 @@ const LineChart: FC<Props> = ({ lines, style, timeUnit, stacked = true }): React
     </div>
   );
 };
-
-export default LineChart;

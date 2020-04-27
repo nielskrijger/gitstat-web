@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { ValueType } from 'react-select';
 import styled from 'styled-components';
 import Select from '../../components/form/Select';
@@ -21,7 +21,7 @@ interface Props {
   onChange: (value: OrderByType) => void;
 }
 
-const SelectOrderBy: FC<Props> = ({ value = OrderByType.TIME, onChange }): ReactElement => (
+export default ({ value = OrderByType.TIME, onChange }: Props): ReactElement => (
   <SelectContainer>
     <Select
       name="select-order-by"
@@ -33,5 +33,3 @@ const SelectOrderBy: FC<Props> = ({ value = OrderByType.TIME, onChange }): React
     />
   </SelectContainer>
 );
-
-export default SelectOrderBy;

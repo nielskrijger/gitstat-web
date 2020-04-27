@@ -1,8 +1,8 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import H1 from '../../components/H1';
 import H2 from '../../components/H2';
 
-const AboutScreen: FC = (): ReactElement => (
+export default (): ReactElement => (
   <>
     <H1>About GitStat</H1>
     <p>
@@ -47,5 +47,3 @@ const AboutScreen: FC = (): ReactElement => (
     </ul>
   </>
 );
-
-export default AboutScreen;

@@ -8,7 +8,7 @@ export const initialState = {
 
 export type Actions = LoadDataAction;
 
-const reducer = (state: GitStatData, action: Actions): GitStatData => {
+export default (state: GitStatData, action: Actions): GitStatData => {
   switch (action.type) {
     case 'LOAD_DATA':
       return {
@@ -19,5 +19,3 @@ const reducer = (state: GitStatData, action: Actions): GitStatData => {
       return { ...state };
   }
 };
-
-export default reducer;

@@ -1,4 +1,11 @@
-import React, { createContext, Dispatch, FC, ReactElement, useContext, useReducer } from 'react';
+import React, {
+  createContext,
+  Dispatch,
+  ReactElement,
+  ReactNode,
+  useContext,
+  useReducer,
+} from 'react';
 import { GitStatData } from '../../types/gitStatData';
 import reducer, { Actions, initialState } from './dataReducer';
 
@@ -17,7 +24,11 @@ export const useGitData = (): { data: GitStatData | null; dispatch: Dispatch<Act
   return { data, dispatch };
 };
 
-export const GitDataProvider: FC = ({ children }): ReactElement => {
+interface Props {
+  children: ReactNode;
+}
+
+export default ({ children }: Props): ReactElement => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const value = { state, dispatch };

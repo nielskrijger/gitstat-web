@@ -1,7 +1,7 @@
 import Chart, { ChartData, ChartTooltipItem, ChartTooltipLabelColor } from 'chart.js';
 import { mix, parseToRgb } from 'polished';
 import { RgbaColor } from 'polished/lib/types/color';
-import React, { CSSProperties, FC, ReactElement, useEffect, useRef, useState } from 'react';
+import React, { CSSProperties, ReactElement, useEffect, useRef, useState } from 'react';
 import { colors } from '../../styles/colors';
 
 export interface Slice {
@@ -16,7 +16,7 @@ interface Props {
   readonly style?: CSSProperties;
 }
 
-const PieChart: FC<Props> = ({ slices, style }): ReactElement => {
+export default ({ slices, style }: Props): ReactElement => {
   const ref = useRef<HTMLCanvasElement>(null);
   const [chart, setChart] = useState<Chart | null>(null);
   const [sortedSlices, setSortedSlices] = useState<Slice[]>([]);
@@ -100,5 +100,3 @@ const PieChart: FC<Props> = ({ slices, style }): ReactElement => {
     </div>
   );
 };
-
-export default PieChart;

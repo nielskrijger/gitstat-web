@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
 import SideMenu from '../components/side-menu/SideMenu';
 
@@ -15,11 +15,13 @@ const Content = styled.div`
   padding: 1rem 2rem;
 `;
 
-const MainLayout: FC = ({ children }): ReactElement => (
+interface Props {
+  children: ReactNode;
+}
+
+export default ({ children }: Props): ReactElement => (
   <Container>
     <SideMenu />
     <Content>{children}</Content>
   </Container>
 );
-
-export default MainLayout;

@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, ReactElement } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import { ValueType } from 'react-select';
 import styled from 'styled-components';
 import Select from '../../components/form/Select';
@@ -25,7 +25,7 @@ interface Props {
   readonly style?: CSSProperties;
 }
 
-const SelectItemCount: FC<Props> = ({ onChange, value, style }): ReactElement => (
+export default ({ onChange, value, style }: Props): ReactElement => (
   <SelectItemContainer style={style}>
     <Select
       name="color"
@@ -38,5 +38,3 @@ const SelectItemCount: FC<Props> = ({ onChange, value, style }): ReactElement =>
     />
   </SelectItemContainer>
 );
-
-export default SelectItemCount;

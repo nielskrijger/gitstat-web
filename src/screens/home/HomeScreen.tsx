@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import H1 from '../../components/H1';
 import H2 from '../../components/H2';
@@ -15,7 +15,7 @@ const Disclaimer = styled.p`
   color: ${colors.textSecondary};
 `;
 
-const HomeScreen: FC = (): ReactElement => (
+export default (): ReactElement => (
   <PageLayout>
     <EdgeWarning />
 
@@ -35,5 +35,3 @@ const HomeScreen: FC = (): ReactElement => (
     <SelectSampleProject />
   </PageLayout>
 );
-
-export default HomeScreen;

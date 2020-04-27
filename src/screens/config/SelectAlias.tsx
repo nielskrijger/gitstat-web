@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useMemo } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import styled from 'styled-components';
 import CrossSVG from '../../../assets/icons/cross.svg';
 import HoverButton from '../../components/buttons/HoverButton';
@@ -21,15 +21,15 @@ const FormRow = styled.div`
   align-items: center;
 `;
 
-const SelectAlias: FC = (): ReactElement => {
+export default (): ReactElement => {
   const { config, dispatch } = useConfig();
   const authorNames = useAuthorNames();
 
   // Contains only names not already part of another alias
   const filteredNames = useMemo(() => {
     return authorNames.filter(
-      name =>
-        !config.authorAliases.some(elm => elm.realName === name || elm.aliases.includes(name)),
+      (name) =>
+        !config.authorAliases.some((elm) => elm.realName === name || elm.aliases.includes(name)),
     );
   }, [authorNames, config.authorAliases]);
 
@@ -71,5 +71,3 @@ const SelectAlias: FC = (): ReactElement => {
     </>
   );
 };
-
-export default SelectAlias;

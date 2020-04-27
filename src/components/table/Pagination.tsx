@@ -1,5 +1,5 @@
 import { darken } from 'polished';
-import React, { CSSProperties, FC, ReactElement, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import styled, { createGlobalStyle } from 'styled-components';
 import { colors } from '../../styles/colors';
@@ -67,13 +67,13 @@ interface Props {
   readonly style?: CSSProperties;
 }
 
-const Pagination: FC<Props> = ({
+export default ({
   currentPage,
   itemCount,
   itemsPerPage,
   onPageChange,
   style,
-}): ReactElement | null => {
+}: Props): ReactElement | null => {
   const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
     setPageCount(Math.ceil(itemCount / itemsPerPage));
@@ -102,5 +102,3 @@ const Pagination: FC<Props> = ({
     </PaginationContainer>
   );
 };
-
-export default Pagination;

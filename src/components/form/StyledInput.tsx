@@ -24,7 +24,7 @@ function determineBorderColor(hasError?: boolean, isValid?: boolean): string {
   return colors.inputBorder;
 }
 
-const StyledInput = styled.input`
+export default styled.input`
   display: block;
   width: 100%;
   min-height: 38px;
@@ -57,5 +57,3 @@ const StyledInput = styled.input`
   ${({ isValid }: Props): FlattenSimpleInterpolation | undefined =>
     isValid ? validIcon : undefined}
 `;
-
-export default StyledInput;

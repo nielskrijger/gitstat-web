@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-const FormGroup = styled.div`
+export default styled.div`
   position: relative;
   margin-bottom: 1rem;
 `;
-
-export default FormGroup;

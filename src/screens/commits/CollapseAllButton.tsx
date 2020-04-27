@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, ReactElement } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import styled from 'styled-components';
 import CollapseIcon from '../../../assets/icons/collapse.svg';
 import IconLink from '../../components/buttons/IconLink';
@@ -25,10 +25,8 @@ interface Props {
   readonly style?: CSSProperties;
 }
 
-const CollapseAllButton: FC<Props> = ({ onClick, style }): ReactElement => (
+export default ({ onClick, style }: Props): ReactElement => (
   <Icon onClick={onClick} style={style} title="Collapse all">
     <CollapseIcon />
   </Icon>
 );
-
-export default CollapseAllButton;

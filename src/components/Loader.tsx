@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { colors } from '../styles/colors';
 
@@ -72,7 +72,7 @@ const Dot4 = styled(Dot)`
   animation: ${ellipsis3} 0.6s infinite;
 `;
 
-const Loader: FC = (): ReactElement => (
+export default (): ReactElement => (
   <Container>
     <Ellipsis>
       <Dot1 />
@@ -82,5 +82,3 @@ const Loader: FC = (): ReactElement => (
     </Ellipsis>
   </Container>
 );
-
-export default Loader;

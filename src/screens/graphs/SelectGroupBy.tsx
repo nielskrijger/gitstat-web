@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { ValueType } from 'react-select';
 import styled from 'styled-components';
 import Select from '../../components/form/Select';
@@ -20,7 +20,7 @@ const SelectContainer = styled.div`
   width: 140px;
 `;
 
-const SelectGroupBy: FC<Props> = ({ value = GroupByType.AUTHOR, onChange }): ReactElement => (
+export default ({ value = GroupByType.AUTHOR, onChange }: Props): ReactElement => (
   <SelectContainer>
     <Select
       name="select-group-by"
@@ -32,5 +32,3 @@ const SelectGroupBy: FC<Props> = ({ value = GroupByType.AUTHOR, onChange }): Rea
     />
   </SelectContainer>
 );
-
-export default SelectGroupBy;

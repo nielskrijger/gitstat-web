@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { Signature } from '../types/gitStatData';
 
@@ -12,8 +12,6 @@ const Name = styled.div`
   text-overflow: ellipsis;
 `;
 
-const Author: FC<Props> = ({ signature }): ReactElement => (
+export default ({ signature }: Props): ReactElement => (
   <Name title={`${signature.name}`}>{signature.name}</Name>
 );
-
-export default Author;

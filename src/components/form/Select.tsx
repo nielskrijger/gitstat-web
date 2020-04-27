@@ -207,7 +207,7 @@ const CheckboxOption = (props: OptionProps<SelectOptionType>): ReactElement => {
   );
 };
 
-const Select = ({
+export default ({
   selectAll = false,
   ellipsis = false,
   options,
@@ -266,5 +266,3 @@ const Select = ({
     />
   );
 };
-
-export default Select;

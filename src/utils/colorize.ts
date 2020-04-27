@@ -22,7 +22,7 @@ const DARKEN_BACKGROUND = 0.8;
  * significant to least significant, that way it's unlikely the same color
  * will appear in adjacent lines/bars/slices within your graph.
  */
-export const colorize = <T>(dataSets: T[]): (ColoredElement & T)[] => {
+export default <T>(dataSets: T[]): (ColoredElement & T)[] => {
   let colorIndex = 0;
   return dataSets.map((dataSet) => {
     const color = COLORS[colorIndex % COLORS.length];

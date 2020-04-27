@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import Loader from '../../components/Loader';
 
@@ -10,10 +10,8 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const LoadingScreen: FC = (): ReactElement => (
+export default (): ReactElement => (
   <Container>
     <Loader />
   </Container>
 );
-
-export default LoadingScreen;

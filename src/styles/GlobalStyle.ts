@@ -29,6 +29,17 @@ export default createGlobalStyle`
     font-family: 'Inconsolata', monospace;
   }
   
+  blockquote {
+    border-left: 5px solid ${colors.inputBorder};
+    color: ${colors.textSecondary};
+    margin: 1.5rem;
+    padding: 0 1rem;
+    
+    a {
+      color: ${colors.textSecondary};
+    }
+  }
+  
   #root {
     width: 100%;
     min-height: 100%;
@@ -54,7 +65,7 @@ export default createGlobalStyle`
   }
   
   a {
-    color: ${colors.link};
+    color: ${colors.primary};
     text-decoration: none;
     
     &:hover {
@@ -78,7 +89,7 @@ export default createGlobalStyle`
   table.plain {
     td {
       border-top: none;
-      padding: 0.1rem;
+      padding: 0.1rem 0.2rem;
     }
     th {
       padding: 0.1rem;

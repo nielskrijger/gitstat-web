@@ -38,7 +38,7 @@ const MenuItem: FC<Props> = ({
     exact={exact}
     activeStyle={{
       fontWeight: 'bold',
-      color: colors.link,
+      color: colors.primary,
     }}
     iconOnly={iconOnly}
     title={title}

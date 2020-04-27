@@ -12,6 +12,7 @@ export const initialState = {
   excludeFileFilters: [],
   authorAliases: [],
   excludeAuthors: [],
+  excludeCommits: [],
 };
 
 export type Actions =
@@ -20,7 +21,7 @@ export type Actions =
   | AddConfigIndexAction<ConfigArrayKeys>
   | RemoveConfigIndex;
 
-const reducer = (state: Config, action: Actions): Config => {
+export default (state: Config, action: Actions): Config => {
   switch (action.type) {
     case 'UPDATE_CONFIG':
       return {
@@ -53,5 +54,3 @@ const reducer = (state: Config, action: Actions): Config => {
       return state;
   }
 };
-
-export default reducer;

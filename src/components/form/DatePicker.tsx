@@ -59,18 +59,18 @@ const DatePickerStyle = createGlobalStyle`
   }
   .react-datepicker-ignore-onclickoutside {
     &:focus {
-      box-shadow: 0 0 0 1px ${colors.secondary};
+      box-shadow: 0 0 0 1px ${colors.primary};
     }
   }
   .react-datepicker__day--selected,
   .react-datepicker__month-text--selected,
   .react-datepicker__quarter-text--selected {
-    background-color: ${colors.secondary};
+    background-color: ${colors.primary};
     border-radius: ${borderRadius};
     font-weight: bold;
     
     &:hover {
-      background-color: ${colors.secondary};
+      background-color: ${colors.primary};
     }
   }
   .react-datepicker__today-button {

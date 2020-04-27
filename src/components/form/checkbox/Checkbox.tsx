@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 import CheckIcon from './CheckIcon';
 import HiddenCheckbox from './HiddenCheckbox';
@@ -7,15 +7,16 @@ import StyledCheckbox from './StyledCheckbox';
 const CheckboxContainer = styled.label`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 interface Props {
   checked: boolean;
   onChange: (checked: boolean) => void;
-  label: string;
+  children: ReactNode;
 }
 
-const Checkbox: FC<Props> = ({ checked, label, onChange }) => (
+const Checkbox: FC<Props> = ({ checked, onChange, children }) => (
   <CheckboxContainer>
     <HiddenCheckbox checked={checked} onChange={(ev): void => onChange(ev.target.checked)} />
     <StyledCheckbox checked={checked}>
@@ -23,7 +24,7 @@ const Checkbox: FC<Props> = ({ checked, label, onChange }) => (
         <polyline points="20 6 9 17 4 12" />
       </CheckIcon>
     </StyledCheckbox>
-    {label}
+    {children}
   </CheckboxContainer>
 );
 

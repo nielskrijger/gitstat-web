@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import Addition from '../../components/Addition';
 import Deletion from '../../components/Deletion';
@@ -11,24 +11,13 @@ import { colors } from '../../styles/colors';
 import { ExtendedCommit } from '../../types/commits';
 import { CommitFile } from '../../types/gitStatData';
 import markdown from '../../utils/markdown';
+import ExcludeCommit from './ExcludeCommit';
 
 const Container = styled.div`
-  padding: 1rem;
+  margin: 1rem;
   white-space: normal;
+  width: fit-content;
 `;
-
-/**
- * Splits string a number of times and returns the remainder as a the last element of the array.
- */
-function splitRemainder(str: string, separator: string, limit: number): string[] {
-  const pieces = str.split(separator);
-  if (pieces.length > limit) {
-    const rest = pieces.splice(0, limit);
-    rest.push(pieces.join(separator));
-    return rest;
-  }
-  return pieces;
-}
 
 const filenameCopy = (file: CommitFile): string => {
   if (file.renameOf) {
@@ -39,67 +28,68 @@ const filenameCopy = (file: CommitFile): string => {
 };
 
 interface Props {
-  commit: ExtendedCommit;
+  readonly commit: ExtendedCommit;
 }
 
-const CommitDetails: FC<Props> = ({ commit }): ReactElement => {
-  const [title, description] = splitRemainder(commit.message, '\n', 1);
+export default ({ commit }: Props): ReactElement => (
+  <Container>
+    <H3>
+      {commit.isMerge && <MergeIcon />} {commit.title}
+    </H3>
 
-  return (
-    <Container>
-      <H3>
-        {commit.isMerge && <MergeIcon />} {title.trim()}
-      </H3>
-      <SubHeader>
-        {commit.project} - {commit.author.name} - <ShortDateTime time={commit.committer.time} /> -{' '}
-        {commit.hash}
-      </SubHeader>
-      {description && <p dangerouslySetInnerHTML={{ __html: markdown(description) }} />}
-      <table className="plain">
-        <thead>
-          <tr>
-            <TH style={{ textAlign: 'left' }}>File</TH>
-            <TH style={{ textAlign: 'right' }}>
-              <Addition>+</Addition>
-            </TH>
-            <TH style={{ textAlign: 'right' }}>
-              <Deletion>-</Deletion>
-            </TH>
-          </tr>
-        </thead>
-        <tbody>
-          {commit.extendedFiles.map(
-            (file): ReactElement => (
-              <tr key={file.filepath}>
-                <td style={{ color: commit.excluded ? colors.textDisabled : colors.text }}>
-                  <code>{filenameCopy(file)}</code>
-                </td>
-                <td style={{ textAlign: 'right' }}>
-                  <Addition excluded={file.excluded}>{file.additions}</Addition>
-                </td>
-                <td style={{ textAlign: 'right' }}>
-                  <Deletion excluded={file.excluded}>{file.deletions}</Deletion>
-                </td>
-              </tr>
-            ),
-          )}
-          <tr>
-            <td />
-            <td style={{ textAlign: 'right' }}>
-              <Addition excluded={commit.excluded}>
-                <strong>{commit.additions}</strong>
-              </Addition>
-            </td>
-            <td style={{ textAlign: 'right' }}>
-              <Deletion excluded={commit.excluded}>
-                <strong>{commit.deletions}</strong>
-              </Deletion>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </Container>
-  );
-};
+    <SubHeader>
+      {commit.project} - {commit.author.name} - <ShortDateTime time={commit.committer.time} /> -{' '}
+      {commit.hash}
+    </SubHeader>
 
-export default CommitDetails;
+    <ExcludeCommit value={commit.hash} />
+
+    {commit.description && (
+      <blockquote dangerouslySetInnerHTML={{ __html: markdown(commit.description) }} />
+    )}
+
+    <table className="plain">
+      <thead>
+        <tr>
+          <TH style={{ textAlign: 'left' }}>File</TH>
+          <TH style={{ textAlign: 'right' }}>
+            <Addition>+</Addition>
+          </TH>
+          <TH style={{ textAlign: 'right' }}>
+            <Deletion>-</Deletion>
+          </TH>
+        </tr>
+      </thead>
+      <tbody>
+        {commit.extendedFiles.map(
+          (file): ReactElement => (
+            <tr key={file.filepath}>
+              <td style={{ color: commit.excluded ? colors.textDisabled : colors.text }}>
+                <code>{filenameCopy(file)}</code>
+              </td>
+              <td style={{ textAlign: 'right' }}>
+                <Addition excluded={file.excluded}>{file.additions}</Addition>
+              </td>
+              <td style={{ textAlign: 'right' }}>
+                <Deletion excluded={file.excluded}>{file.deletions}</Deletion>
+              </td>
+            </tr>
+          ),
+        )}
+        <tr>
+          <td />
+          <td style={{ textAlign: 'right' }}>
+            <Addition excluded={commit.excluded}>
+              <strong>{commit.additions}</strong>
+            </Addition>
+          </td>
+          <td style={{ textAlign: 'right' }}>
+            <Deletion excluded={commit.excluded}>
+              <strong>{commit.deletions}</strong>
+            </Deletion>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </Container>
+);

@@ -5,10 +5,10 @@ export interface LoadDataAction {
   readonly data: GitStatData;
 }
 
-export function loadData(data: GitStatData): LoadDataAction {
+export const loadData = (data: GitStatData): LoadDataAction => {
   sessionStorage.clear();
   return {
     type: 'LOAD_DATA',
     data,
   };
-}
+};

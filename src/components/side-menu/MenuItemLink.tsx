@@ -18,6 +18,6 @@ export default styled(NavLink)<Props>`
   padding: ${({ iconOnly }): string => (iconOnly ? '0.6rem' : '0.4rem 1.1rem')};
 
   &:hover {
-    color: ${colors.link};
+    color: ${colors.primary};
   }
 `;

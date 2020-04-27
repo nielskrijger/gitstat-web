@@ -18,11 +18,6 @@ const Icon = styled(IconLink)`
   &:hover {
     border-color: ${colors.inputBorderHover};
   }
-
-  &:active {
-    border-color: ${colors.link};
-    box-shadow: 0 0 0 1px ${colors.link};
-  }
 `;
 
 interface Props {

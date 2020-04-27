@@ -13,7 +13,7 @@ const Name = styled.div`
 `;
 
 const Author: FC<Props> = ({ signature }): ReactElement => (
-  <Name title={`${signature.name} <${signature.email}>`}>{signature.name}</Name>
+  <Name title={`${signature.name}`}>{signature.name}</Name>
 );
 
 export default Author;

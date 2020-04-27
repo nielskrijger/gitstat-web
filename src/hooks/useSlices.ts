@@ -12,7 +12,7 @@ export function useSlices(
     }
 
     return commits.reduce((acc: Slice[], group: ColoredCommitGroup): Slice[] => {
-      let slice = acc.find(elm => elm.label === group.name);
+      let slice = acc.find((elm) => elm.label === group.name);
       if (!slice) {
         slice = {
           label: group.name,

@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes, FC, ReactElement } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
-import { borderRadius } from '../../styles/styles';
+import { borderRadius, transitionDelay } from '../../styles/styles';
 import LoadingDots from '../LoadingDots';
 
 interface Props {
@@ -10,16 +10,17 @@ interface Props {
 }
 
 const StyledButton = styled.button`
-  border: 0;
+  border: 1px;
   border-radius: ${borderRadius};
-  color: ${colors.textSecondary};
+  color: ${colors.text};
   padding: 0.5rem 1.2rem 0.6rem 1.2rem;
   font-weight: 400;
-  background-color: ${colors.button};
+  background-color: ${colors.primary};
   outline: none;
+  transition: all ${transitionDelay}ms ease-in-out;
 
   :hover {
-    background-color: ${colors.buttonHover};
+    background-color: ${colors.linkHover};
     cursor: pointer;
   }
 `;

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { colors } from '../../../styles/colors';
-import { transitionDelay } from '../../../styles/styles';
 import CheckIcon from './CheckIcon';
 
 interface Props {
@@ -14,7 +13,6 @@ export default styled.div<Props>`
   background: ${({ checked }): string => (checked ? colors.primary : colors.inputBackground)};
   border-radius: 3px;
   border: 1px solid ${colors.inputBorder};
-  transition: all ${transitionDelay}ms;
   cursor: pointer;
   margin-right: 0.5rem;
 

@@ -11,6 +11,7 @@ export interface Config {
   readonly excludeFileFilters: string[];
   readonly authorAliases: Aliases[];
   readonly excludeAuthors: string[];
+  readonly excludeCommits: string[];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

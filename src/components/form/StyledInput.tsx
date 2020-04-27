@@ -50,7 +50,7 @@ const StyledInput = styled.input`
     outline: 0;
 
     &:hover {
-      border: 1px solid ${colors.secondary};
+      border: 1px solid ${colors.primary};
     }
   }
 

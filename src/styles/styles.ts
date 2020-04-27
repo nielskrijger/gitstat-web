@@ -1,7 +1,7 @@
 export const borderRadius = '4px';
 
 // The transition time in milliseconds used for most transitions.
-export const transitionDelay = 100;
+export const transitionDelay = 200;
 
 // Sizes in px
 export const mediaQuerySizes = {

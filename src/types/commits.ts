@@ -16,6 +16,8 @@ export interface CommitMutations {
 
 export interface ExtendedCommit extends Commit, CommitMutations, ExcludeFilter {
   project: string;
+  title: string;
+  description: string;
   extendedFiles: ExtendedCommitFile[];
 }
 

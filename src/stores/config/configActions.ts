@@ -7,16 +7,14 @@ export interface UpdateConfigAction<K extends keyof Config> {
   readonly value: Config[K];
 }
 
-export function updateConfig<K extends keyof Config>(
+export const updateConfig = <K extends keyof Config>(
   key: K,
   value: Config[K],
-): UpdateConfigAction<K> {
-  return {
-    type: 'UPDATE_CONFIG',
-    key,
-    value,
-  };
-}
+): UpdateConfigAction<K> => ({
+  type: 'UPDATE_CONFIG',
+  key,
+  value,
+});
 
 export interface AddConfigIndexAction<K extends ConfigArrayKeys> {
   readonly type: 'ADD_CONFIG_INDEX';
@@ -27,16 +25,14 @@ export interface AddConfigIndexAction<K extends ConfigArrayKeys> {
 /**
  * Adds an element to an iterable configuration property.
  */
-export function addConfigIndex<K extends ConfigArrayKeys>(
+export const addConfigIndex = <K extends ConfigArrayKeys>(
   key: K,
   value: UnpackArray<Config[K]>,
-): AddConfigIndexAction<K> {
-  return {
-    type: 'ADD_CONFIG_INDEX',
-    key,
-    value,
-  };
-}
+): AddConfigIndexAction<K> => ({
+  type: 'ADD_CONFIG_INDEX',
+  key,
+  value,
+});
 
 export interface UpdateConfigIndexAction<K extends ConfigArrayKeys> {
   readonly type: 'UPDATE_CONFIG_INDEX';
@@ -48,18 +44,16 @@ export interface UpdateConfigIndexAction<K extends ConfigArrayKeys> {
 /**
  * Updates an element from an iterable configuration property.
  */
-export function updateConfigIndex<K extends ConfigArrayKeys>(
+export const updateConfigIndex = <K extends ConfigArrayKeys>(
   key: K,
   index: number,
   value: UnpackArray<Config[K]>,
-): UpdateConfigIndexAction<K> {
-  return {
-    type: 'UPDATE_CONFIG_INDEX',
-    key,
-    index,
-    value,
-  };
-}
+): UpdateConfigIndexAction<K> => ({
+  type: 'UPDATE_CONFIG_INDEX',
+  key,
+  index,
+  value,
+});
 
 export interface RemoveConfigIndex {
   readonly type: 'REMOVE_CONFIG_INDEX';
@@ -70,10 +64,8 @@ export interface RemoveConfigIndex {
 /**
  * Removes an element from an iterable configuration property.
  */
-export function removeConfigIndex(key: ConfigArrayKeys, index: number): RemoveConfigIndex {
-  return {
-    type: 'REMOVE_CONFIG_INDEX',
-    key,
-    index,
-  };
-}
+export const removeConfigIndex = (key: ConfigArrayKeys, index: number): RemoveConfigIndex => ({
+  type: 'REMOVE_CONFIG_INDEX',
+  key,
+  index,
+});

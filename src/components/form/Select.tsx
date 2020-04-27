@@ -35,10 +35,10 @@ const defaultStyles: StylesConfig = {
     ...provided,
     backgroundColor: colors.inputBackground,
     borderColor: colors.inputBorder,
-    boxShadow: state.isFocused || state.isSelected ? `0 0 0 1px ${colors.secondary}` : '',
+    boxShadow: state.isFocused || state.isSelected ? `0 0 0 1px ${colors.primary}` : '',
     border: state.isFocused ? `1px solid ${colors.inputBorder}` : '',
     '&:hover': {
-      borderColor: state.isFocused ? colors.secondary : colors.inputBorderHover,
+      borderColor: state.isFocused ? colors.primary : colors.inputBorderHover,
     },
   }),
   input: (provided: CSSProperties): CSSProperties => ({

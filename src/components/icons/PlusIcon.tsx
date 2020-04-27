@@ -3,7 +3,7 @@ import MergeSVG from '../../../assets/icons/plus.svg';
 import Icon from './Icon';
 
 const PlusIcon: FC = (): ReactElement => (
-  <Icon>
+  <Icon style={{ marginRight: '0.3rem' }}>
     <MergeSVG />
   </Icon>
 );

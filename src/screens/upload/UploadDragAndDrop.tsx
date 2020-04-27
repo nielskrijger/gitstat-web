@@ -18,7 +18,7 @@ const getColor = (props: DropzoneRootProps): string => {
     return colors.error;
   }
   if (props.isDragActive) {
-    return colors.link;
+    return colors.primary;
   }
   return colors.border;
 };

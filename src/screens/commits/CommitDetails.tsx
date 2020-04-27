@@ -44,8 +44,10 @@ export default ({ commit }: Props): ReactElement => (
 
     <ExcludeCommit value={commit.hash} />
 
-    {commit.description && (
+    {commit.description ? (
       <blockquote dangerouslySetInnerHTML={{ __html: markdown(commit.description) }} />
+    ) : (
+      <div style={{ height: '1rem' }} />
     )}
 
     <table className="plain">

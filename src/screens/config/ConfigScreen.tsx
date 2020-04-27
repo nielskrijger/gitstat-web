@@ -76,7 +76,7 @@ export default (): ReactElement => (
           <FirstTD>Exclude commits</FirstTD>
           <SecondTD>
             <Description>
-              Exclude commits in the <Link to="/commits">Commits</Link>-table.
+              Exclude commits in the <Link to="/commits">Commits</Link> page.
             </Description>
             <ResetExcludeCommits />
           </SecondTD>

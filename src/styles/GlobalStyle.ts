@@ -26,7 +26,7 @@ export default createGlobalStyle`
   }
   
   code {
-    font-family: 'Inconsolata', monospace;
+    font-family: 'Roboto Mono', monospace;
   }
   
   blockquote {

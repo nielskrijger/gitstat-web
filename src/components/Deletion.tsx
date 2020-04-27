@@ -5,7 +5,7 @@ interface Props {
   readonly excluded?: boolean;
 }
 
-export default styled.div`
+export default styled.code`
   color: ${({ excluded = false }: Props): string =>
     excluded ? colors.textDisabled : colors.error};
 `;

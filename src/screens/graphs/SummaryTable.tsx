@@ -1,7 +1,7 @@
 import { TimeUnit } from 'chart.js';
 import React, { ReactElement } from 'react';
+import Number from '../../components/Number';
 import { AggregatedCommitGroup } from '../../types/commits';
-import { formatNumber } from '../../utils/number';
 
 interface Props {
   groups: AggregatedCommitGroup[];
@@ -25,8 +25,12 @@ export default ({ groups, timeUnit, others }: Props): ReactElement => (
             {group.name}
             {others.includes(group.name) && <small> (others)</small>}
           </td>
-          <td style={{ textAlign: 'right' }}>{formatNumber(group.aggregate)}</td>
-          <td style={{ textAlign: 'right' }}>{formatNumber(group.average)}</td>
+          <td style={{ textAlign: 'right' }}>
+            <Number value={group.aggregate} />
+          </td>
+          <td style={{ textAlign: 'right' }}>
+            <Number value={group.average} />
+          </td>
         </tr>
       ))}
     </tbody>

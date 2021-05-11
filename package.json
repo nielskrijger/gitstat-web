@@ -23,7 +23,7 @@
     "chartjs-plugin-colorschemes": "^0.4.0",
     "final-form": "^4.19.1",
     "history": "^4.10.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "luxon": "^1.23.0",
     "marked": "^1.0.0",
     "polished": "^3.5.2",
